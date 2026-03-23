@@ -22,15 +22,20 @@ theme:
     font_size_header: "22px"
     font_size_code: "13px"
   logo: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="10" stroke="#C41E2A" stroke-width="1.5" fill="none"/>
-      <circle cx="12" cy="12" r="7" stroke="#B8860B" stroke-width="0.5" fill="none" stroke-dasharray="2 2"/>
-      <circle cx="12" cy="10" r="3" fill="#C41E2A" opacity="0.9"/>
-      <circle cx="12" cy="10" r="1.5" fill="#B8860B"/>
-      <path d="M12 14L10 18H14L12 14Z" fill="#C41E2A" opacity="0.7"/>
-      <line x1="6" y1="12" x2="3" y2="12" stroke="#B8860B" stroke-width="0.8"/>
-      <line x1="18" y1="12" x2="21" y2="12" stroke="#B8860B" stroke-width="0.8"/>
-      <text x="12" y="23" text-anchor="middle" font-family="serif" font-size="2.5" font-weight="bold" fill="#C41E2A">MECH</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="38" stroke="#C41E2A" stroke-width="6" fill="none"/>
+      <rect x="54" y="14" width="12" height="16" rx="2" fill="#C41E2A"/>
+      <rect x="54" y="90" width="12" height="16" rx="2" fill="#C41E2A"/>
+      <rect x="14" y="54" width="16" height="12" rx="2" fill="#C41E2A"/>
+      <rect x="90" y="54" width="16" height="12" rx="2" fill="#C41E2A"/>
+      <rect x="24" y="24" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 30 30)"/>
+      <rect x="84" y="24" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 90 30)"/>
+      <rect x="24" y="84" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 30 90)"/>
+      <rect x="84" y="84" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 90 90)"/>
+      <circle cx="60" cy="55" r="14" fill="#B8860B"/>
+      <circle cx="60" cy="55" r="8" fill="#0A0805"/>
+      <circle cx="60" cy="55" r="4" fill="#C41E2A"/>
+      <path d="M52 70 L60 80 L68 70" fill="#B8860B"/>
     </svg>
   header_image: ""
   card_style: "bordered"
@@ -143,7 +148,7 @@ templates:
     {{.TotalCommits}} sacred rites performed. {{.TotalContributors}} tech-priests ordained.
   story_milestone: "- 01001101 {{.Name}} (`{{.Hash | short}}`) — doctrinal event logged {{.Date}}"
   story_peak: "01001000 DIVINE COMMUNION: {{.Month}} — {{.Count}} rites performed"
-  story_contributor: "- **Tech-Priest {{.Name}}** — ordained {{.Date}}, {{.Count}} mechadendrite operations"
+  story_contributor: "- **Tech-Priest {{.Name}}** — ordained {{.Date}}"
   story_footer: "_01000101 01001110 01000100 // END TRANSMISSION // THE OMNISSIAH PROTECTS_"
 
 html_template_changelog: |
@@ -477,8 +482,8 @@ html_template_changelog: |
 
       /* Charts */
       .am-charts {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 24px;
         margin-bottom: 48px;
       }
@@ -499,7 +504,7 @@ html_template_changelog: |
       }
       .am-chart-wrap {
         position: relative;
-        height: 200px;
+        height: 320px;
       }
 
       /* Contributors */
@@ -1304,6 +1309,36 @@ html_template_story: |
         flex-shrink: 0;
       }
       .nl-footer-logo svg { width: 24px; height: 24px; }
+
+      /* Mechanicus boot animation — data corruption flicker */
+      @media (prefers-reduced-motion: no-preference) {
+        @keyframes mechanicus-boot {
+          0%   { opacity: 0; letter-spacing: 0.8em; color: #2A1A0F; }
+          20%  { opacity: 0.3; letter-spacing: 0.4em; color: #8B0000; }
+          40%  { opacity: 0.7; letter-spacing: 0.2em; color: #C41E2A; }
+          60%  { opacity: 0.9; letter-spacing: 0.1em; color: #C41E2A; }
+          80%  { opacity: 1; letter-spacing: 0.05em; color: #C41E2A; }
+          100% { opacity: 1; letter-spacing: 0.05em; color: #C41E2A; }
+        }
+        @keyframes binary-reveal {
+          0%   { opacity: 0; }
+          80%  { opacity: 0; }
+          100% { opacity: 0.6; }
+        }
+        .nl-header-title {
+          animation: mechanicus-boot 3s ease forwards;
+          animation-iteration-count: 1;
+        }
+        .nl-header-binary-reveal {
+          font-family: 'VT323', monospace;
+          font-size: 14px;
+          color: #B8860B;
+          opacity: 0;
+          animation: binary-reveal 3s ease forwards;
+          animation-iteration-count: 1;
+          letter-spacing: 0.1em;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1317,6 +1352,7 @@ html_template_story: |
         <div class="nl-header-eyebrow">{{.RepoName}} // Designated Construct</div>
         <div class="nl-header-title">Omnissiah's Grand Design</div>
         <div class="nl-header-binary">01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011</div>
+        <div class="nl-header-binary-reveal">01001111 01001101 01001110 01001001 01010011 01010011 01000001 01001000</div>
         {{if or .FirstDate .Generated}}
         <div class="nl-header-meta">
           {{if .FirstDate}}<span>{{.FirstDate}}</span>{{end}}
