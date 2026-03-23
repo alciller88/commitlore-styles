@@ -22,20 +22,13 @@ theme:
     font_size_header: "22px"
     font_size_code: "13px"
   logo: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="38" stroke="#C41E2A" stroke-width="6" fill="none"/>
-      <rect x="54" y="14" width="12" height="16" rx="2" fill="#C41E2A"/>
-      <rect x="54" y="90" width="12" height="16" rx="2" fill="#C41E2A"/>
-      <rect x="14" y="54" width="16" height="12" rx="2" fill="#C41E2A"/>
-      <rect x="90" y="54" width="16" height="12" rx="2" fill="#C41E2A"/>
-      <rect x="24" y="24" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 30 30)"/>
-      <rect x="84" y="24" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 90 30)"/>
-      <rect x="24" y="84" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 30 90)"/>
-      <rect x="84" y="84" width="12" height="12" rx="2" fill="#C41E2A" transform="rotate(45 90 90)"/>
-      <circle cx="60" cy="55" r="14" fill="#B8860B"/>
-      <circle cx="60" cy="55" r="8" fill="#0A0805"/>
-      <circle cx="60" cy="55" r="4" fill="#C41E2A"/>
-      <path d="M52 70 L60 80 L68 70" fill="#B8860B"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="10" stroke="#C41E2A" stroke-width="2" fill="#C41E2A"/>
+      <rect x="14" y="2" width="4" height="5" fill="#C41E2A"/><rect x="14" y="25" width="4" height="5" fill="#C41E2A"/>
+      <rect x="2" y="14" width="5" height="4" fill="#C41E2A"/><rect x="25" y="14" width="5" height="4" fill="#C41E2A"/>
+      <rect x="5" y="5" width="4" height="4" fill="#C41E2A" transform="rotate(45 7 7)"/><rect x="23" y="5" width="4" height="4" fill="#C41E2A" transform="rotate(45 25 7)"/>
+      <circle cx="16" cy="15" r="5" fill="#B8860B"/>
+      <circle cx="16" cy="15" r="2.5" fill="#0A0805"/>
     </svg>
   header_image: ""
   card_style: "bordered"
