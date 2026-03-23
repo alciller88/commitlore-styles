@@ -22,10 +22,10 @@ theme:
     font_size_header: "22px"
     font_size_code: "13px"
   logo: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
-      <path d="M20 95 L20 25 L55 25 L55 35 L33 35 L33 55 L50 55 L50 65 L33 65 L33 85 L55 85 L55 95 Z" fill="#FCEE09" stroke="#FCEE09" stroke-width="3" stroke-linejoin="bevel"/>
-      <path d="M65 25 L65 85 L100 85 L100 95 L52 95 L52 25 Z" fill="#FCEE09" stroke="#FCEE09" stroke-width="3" stroke-linejoin="bevel"/>
-      <line x1="10" y1="60" x2="110" y2="60" stroke="#00D9FF" stroke-width="3" opacity="0.2"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <path d="M4 26 L4 6 L14 6 L14 9 L8 9 L8 14 L13 14 L13 18 L8 18 L8 23 L14 23 L14 26 Z" fill="#FCEE09"/>
+      <path d="M17 6 L17 23 L27 23 L27 26 L14 26 L14 6 Z" fill="#FCEE09"/>
+      <line x1="2" y1="16" x2="30" y2="16" stroke="#00D9FF" stroke-width="1.5" opacity="0.2"/>
     </svg>
   header_image: ""
   card_style: "bordered"
