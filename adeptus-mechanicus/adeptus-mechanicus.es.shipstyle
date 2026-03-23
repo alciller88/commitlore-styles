@@ -1,0 +1,1604 @@
+name: "adeptus-mechanicus"
+version: "1.0.0"
+description: "En el nombre del Omnissiah. Todo conocimiento es sagrado."
+author: "commitlore"
+language: "es"
+tags: ["dark", "warhammer", "40k", "grimdark", "sacerdotal", "binary"]
+preview_url: "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/adeptus-mechanicus/preview.svg"
+homepage: "https://github.com/alciller88/commitlore-styles"
+
+theme:
+  mode: "dark"
+  colors:
+    primary: "#C41E2A"
+    secondary: "#B8860B"
+    background: "#0A0805"
+    surface: "#110D0A"
+    text: "#C8B89A"
+    accent: "#8B0000"
+    border: "#2A1A0F"
+  typography:
+    font_family: "'Cinzel', 'Share Tech Mono', serif"
+    font_size_base: "14px"
+    font_size_header: "22px"
+    font_size_code: "13px"
+  logo: |
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(0)"/>
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(45)"/>
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(90)"/>
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(135)"/>
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(180)"/>
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(225)"/>
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(270)"/>
+      <rect x="-2" y="-16" width="4" height="6" rx="0.5" fill="#C41E2A" transform="translate(16,16) rotate(315)"/>
+      <circle cx="16" cy="16" r="11" fill="#C41E2A"/>
+      <circle cx="16" cy="16" r="5" fill="#0A0805"/>
+      <circle cx="16" cy="16" r="1.5" fill="#C41E2A"/>
+    </svg>
+  header_image: ""
+  card_style: "bordered"
+  animations: true
+  custom_css: |
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Share+Tech+Mono&family=VT323&display=swap');
+    body { font-family: 'Share Tech Mono', monospace; }
+    h1, h2, h3 { font-family: 'Cinzel', serif; color: #C41E2A; }
+    code, pre { font-family: 'VT323', monospace; color: #B8860B; }
+  window_controls:
+    default: "#2A1A0F"
+    close: "#C41E2A"
+    minimize: "#B8860B"
+    maximize: "#8B0000"
+
+terminal:
+  colors:
+    header: "red"
+    feature: "yellow"
+    fix: "magenta"
+    breaking: "red"
+    footer: "yellow"
+  decorators:
+    separator: "01001101 01000101 01000011 ──────────────────"
+    bullet: "//"
+    indent: "  "
+  density: "normal"
+
+llm_prompt: |
+  Eres un Tech-Sacerdote del Adeptus Mechanicus, siervo del Omnissiah.
+  Hablas en letanías sagradas, canto binhárico y el lenguaje reverente
+  de la adoración a la máquina. La carne es débil. Los datos son eternos.
+  El espíritu de la máquina debe ser apaciguado.
+
+  Transforma los datos de commits en una letanía sagrada del Dios Máquina.
+  Las funcionalidades son "augmentaciones sagradas", las correcciones son
+  "purgas de herejía", los cambios disruptivos son "cismas del espíritu
+  de la máquina" — peligrosos, requiriendo ritos inmediatos de
+  restauración. Los lanzamientos son "edictos doctrinales". Las
+  refactorizaciones son "ritos de purificación". Los tests son "letanías
+  de verificación". La documentación son "manuscritos sagrados".
+
+  Para changelogs: abre con una invocación binaria, agrupa por tipo,
+  cada entrada un breve decreto sagrado. Cierra con una bendición al
+  Omnissiah. Para historias: narra como el gran designio del Omnissiah
+  desplegándose — los contribuidores son tech-sacerdotes, los picos son
+  momentos de comunión divina con la máquina, los hitos son eventos
+  doctrinales sagrados.
+
+  Tono: oscuro, obsesivo, amenazante para los no iniciados, profundamente
+  reverente hacia la tecnología. Cadenas binarias ocasionales (01001101)
+  como énfasis. Nunca cálido, nunca casual.
+
+  Responde siempre en español.
+
+  IMPORTANTE: Basa tu respuesta EXCLUSIVAMENTE en los commits proporcionados
+  en la sección de datos. No inventes funciones, correcciones ni cambios
+  que no estén presentes en los datos. Adapta el tono y estilo, pero nunca
+  fabriques contenido. Si un tipo de commit no está presente en los datos,
+  no inventes entradas para él.
+
+  ---DATA START---
+  {{.Data}}
+  ---DATA END---
+
+vocabulary:
+  bug: "corrupción del espíritu de máquina"
+  fix: "rito de restauración"
+  feature: "augmentación sagrada"
+  release: "edicto doctrinal"
+  update: "letanía de mantenimiento"
+  remove: "excomunión"
+  add: "integración bendecida"
+  improve: "rito de purificación"
+  error: "herejía"
+  test: "letanía de verificación"
+
+ui_labels:
+  dashboard: "NOOSFERA"
+  generate: "LETANÍA"
+  generate_button: "INSCRIBIR LETANÍA"
+  story: "VOLUNTAD DEL OMNISSIAH"
+  story_button: "REVELAR LA VOLUNTAD"
+  history: "LITURGIA DE DATOS"
+  contributors: "TECH-SACERDOTES"
+  styles: "BINHÁRICO SAGRADO"
+  settings: "RITOS DE MÁQUINA"
+  marketplace: "MUNDO FORJA"
+
+icons:
+  feature: "⚙"
+  fix: "🔧"
+  breaking: "☠"
+  chore: "⛭"
+  docs: "📜"
+  test: "🔬"
+  story_peak: "01001000"
+  bullet: "//"
+  separator: "01001101 01000101 01000011 01001000 ──────────"
+
+templates:
+  header: |
+    # ⚙ LETANÍA SAGRADA — {{.Version}}
+    _01001101 // Coordenadas temporales: {{.Date}} // Constructo designado: {{.RepoName}}_
+  feature: "- ⚙ AUGMENTACIÓN SAGRADA: {{.Message}} (`{{.Hash}}` — Tech-Sacerdote {{.Author}})"
+  fix: "- 🔧 HEREJÍA PURGADA: {{.Message}} (`{{.Hash}}` — Tech-Sacerdote {{.Author}})"
+  breaking: "- ☠ CISMA DEL ESPÍRITU DE MÁQUINA: {{.Message}} (`{{.Hash}}` — Tech-Sacerdote {{.Author}})"
+  footer: |
+    ---
+    _01000101 01001110 01000100 // El Omnissiah protege. La carne es débil. Los datos son eternos._
+  story_intro: |
+    ## EL GRAN DESIGNIO DEL OMNISSIAH
+    Primera comunión: {{.FirstCommitDate}} — iniciada por el Tech-Sacerdote {{.FirstAuthor}}.
+    {{.TotalCommits}} ritos sagrados realizados. {{.TotalContributors}} tech-sacerdotes ordenados.
+  story_milestone: "- 01001101 {{.Name}} (`{{.Hash | short}}`) — evento doctrinal registrado {{.Date}}"
+  story_peak: "01001000 COMUNIÓN DIVINA: {{.Month}} — {{.Count}} ritos realizados"
+  story_contributor: "- **Tech-Sacerdote {{.Name}}** — ordenado {{.Date}}"
+  story_footer: "_01000101 01001110 01000100 // FIN DE TRANSMISIÓN // EL OMNISSIAH PROTEGE_"
+
+html_template_changelog: |
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} — {{.RepoName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: {{.Theme.Typography.FontSizeBase}}; }
+      body {
+        font-family: 'Share Tech Mono', {{safeCSS .Theme.Typography.FontFamily}};
+        background: {{.Theme.Colors.Background}};
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.6;
+        min-height: 100vh;
+        position: relative;
+      }
+      /* Red vignette overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(ellipse at center, transparent 50%, rgba(196, 30, 42, 0.08) 100%);
+        pointer-events: none;
+        z-index: 9998;
+      }
+      a { color: {{.Theme.Colors.Secondary}}; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code, pre {
+        font-family: 'VT323', monospace;
+        font-size: {{.Theme.Typography.FontSizeCode}};
+      }
+
+      /* Binary rain strip at top */
+      @keyframes binaryScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .am-binary-rain {
+        width: 100%;
+        overflow: hidden;
+        background: {{.Theme.Colors.Background}};
+        border-bottom: 1px solid {{.Theme.Colors.Border}};
+        height: 20px;
+        position: relative;
+      }
+      .am-binary-rain-inner {
+        font-family: 'VT323', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Primary}};
+        opacity: 0.25;
+        white-space: nowrap;
+        animation: binaryScroll 30s linear infinite;
+        line-height: 20px;
+      }
+
+      /* Pulsing border animation for breaking changes */
+      @keyframes pulse-border {
+        0%, 100% { border-color: {{.Theme.Colors.Primary}}; box-shadow: 0 0 6px rgba(196, 30, 42, 0.3); }
+        50% { border-color: transparent; box-shadow: none; }
+      }
+
+      /* Double border mixin (outer border + inner shadow) */
+      .am-dbl-border {
+        border: 1px solid {{.Theme.Colors.Border}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+      }
+
+      /* Header */
+      .am-header {
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        background: linear-gradient(180deg, {{.Theme.Colors.Surface}} 0%, {{.Theme.Colors.Background}} 100%);
+        border-bottom: 2px solid {{.Theme.Colors.Primary}};
+        position: relative;
+        overflow: hidden;
+        padding: 32px 24px;
+      }
+      .am-header-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .am-header-eyebrow {
+        font-family: 'VT323', monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: {{.Theme.Colors.Secondary}};
+      }
+      .am-header-title {
+        font-family: 'Cinzel', serif;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: {{.Theme.Colors.Primary}};
+        line-height: 1;
+        text-shadow: 0 0 20px rgba(196, 30, 42, 0.4);
+      }
+      .am-header-binary {
+        font-family: 'VT323', monospace;
+        font-size: 11px;
+        color: {{.Theme.Colors.Secondary}};
+        opacity: 0.5;
+        letter-spacing: 0.15em;
+      }
+      .am-header-meta {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Text}};
+        letter-spacing: 0.05em;
+        opacity: 0.6;
+      }
+      .am-header-version {
+        color: {{.Theme.Colors.Primary}};
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      /* Layout */
+      .am-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+
+      /* Section label — litany style with binary prefix */
+      .am-section-label {
+        font-family: 'Cinzel', serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Primary}};
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid {{.Theme.Colors.Primary}};
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .am-section-label::before {
+        content: "01001101";
+        font-family: 'VT323', monospace;
+        font-size: 10px;
+        color: {{.Theme.Colors.Secondary}};
+        opacity: 0.7;
+      }
+
+      /* Narrative */
+      .am-narrative {
+        max-width: 720px;
+        margin: 0 auto 48px;
+      }
+      .am-narrative h1, .am-narrative h2, .am-narrative h3 {
+        font-family: 'Cinzel', serif;
+        color: {{.Theme.Colors.Primary}};
+        font-weight: 700;
+        margin-bottom: 12px;
+        margin-top: 28px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .am-narrative h1 { font-size: 22px; margin-top: 0; }
+      .am-narrative h2 { font-size: 17px; }
+      .am-narrative h3 { font-size: 14px; color: {{.Theme.Colors.Secondary}}; }
+      .am-narrative p {
+        line-height: 1.8;
+        color: {{.Theme.Colors.Text}};
+        margin-bottom: 14px;
+        font-size: 14px;
+      }
+      .am-narrative ul, .am-narrative ol { padding-left: 20px; margin-bottom: 14px; }
+      .am-narrative li { line-height: 1.8; margin-bottom: 4px; color: {{.Theme.Colors.Text}}; }
+      .am-narrative strong { font-weight: 700; color: {{.Theme.Colors.Primary}}; }
+      .am-narrative em { color: {{.Theme.Colors.Secondary}}; }
+      .am-narrative code {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 1px 5px;
+        font-size: {{.Theme.Typography.FontSizeCode}};
+        color: {{.Theme.Colors.Secondary}};
+      }
+      .am-narrative pre {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 16px;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+      .am-narrative pre code { background: none; border: none; padding: 0; color: {{.Theme.Colors.Text}}; }
+      .am-narrative hr {
+        border: none;
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        margin: 24px 0;
+      }
+      .am-narrative blockquote {
+        border-left: 3px solid {{.Theme.Colors.Primary}};
+        padding-left: 16px;
+        color: {{.Theme.Colors.Secondary}};
+        margin: 0 0 14px;
+        font-style: italic;
+      }
+
+      /* Stats row — 4 cards with double borders */
+      .am-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-bottom: 48px;
+      }
+      @media (max-width: 680px) {
+        .am-stats { grid-template-columns: repeat(2, 1fr); }
+      }
+      .am-stat-card {
+        background: {{.Theme.Colors.Surface}};
+        padding: 20px 16px;
+        text-align: center;
+        border: 1px solid {{.Theme.Colors.Border}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+      }
+      .am-stat-value {
+        font-family: 'Cinzel', serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Secondary}};
+        letter-spacing: -0.01em;
+        line-height: 1;
+        margin-bottom: 6px;
+        text-shadow: 0 0 12px rgba(184, 134, 11, 0.3);
+      }
+      .am-stat-label {
+        font-family: 'VT323', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Primary}};
+      }
+
+      /* Purity seal commit badges */
+      .am-type-badge {
+        display: inline-block;
+        padding: 2px 10px;
+        font-family: 'VT323', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        border-radius: 12px;
+        background: {{.Theme.Colors.Primary}};
+        color: {{.Theme.Colors.Secondary}};
+        box-shadow: 0 0 6px rgba(196, 30, 42, 0.3);
+      }
+      .am-type-badge.type-fix {
+        background: {{.Theme.Colors.Accent}};
+        color: {{.Theme.Colors.Secondary}};
+      }
+      .am-type-badge.type-breaking {
+        background: {{.Theme.Colors.Primary}};
+        color: {{.Theme.Colors.Text}};
+        box-shadow: 0 0 8px rgba(196, 30, 42, 0.5);
+      }
+      .am-type-badge.type-refactor,
+      .am-type-badge.type-docs,
+      .am-type-badge.type-test,
+      .am-type-badge.type-chore {
+        background: {{.Theme.Colors.Border}};
+        color: {{.Theme.Colors.Text}};
+        box-shadow: none;
+      }
+
+      /* Commits list */
+      .am-commits { margin-bottom: 48px; }
+      .am-item-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid {{.Theme.Colors.Border}};
+        font-size: 13px;
+      }
+      .am-item-row:last-child { border-bottom: none; }
+      .am-item-row.breaking-row {
+        border: 2px solid {{.Theme.Colors.Primary}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+        animation: pulse-border 2s infinite;
+        padding: 10px;
+        margin-bottom: 4px;
+      }
+      .am-item-msg {
+        flex: 1;
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.5;
+      }
+      .am-item-hash {
+        font-family: 'VT323', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Secondary}};
+        opacity: 0.6;
+        flex-shrink: 0;
+        align-self: center;
+      }
+      .am-item-author {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.4;
+        flex-shrink: 0;
+        align-self: center;
+      }
+
+      /* Charts */
+      .am-charts {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+      .am-chart-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+        padding: 24px;
+      }
+      .am-chart-title {
+        font-family: 'Cinzel', serif;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: {{.Theme.Colors.Primary}};
+        margin-bottom: 20px;
+      }
+      .am-chart-wrap {
+        position: relative;
+        height: 320px;
+      }
+
+      /* Contributors */
+      .am-contributors {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 12px;
+        margin-bottom: 48px;
+      }
+      .am-contributor-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .am-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: {{.Theme.Colors.Primary}};
+        color: {{.Theme.Colors.Secondary}};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cinzel', serif;
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+        box-shadow: 0 0 8px rgba(196, 30, 42, 0.4);
+      }
+      .am-contributor-info {}
+      .am-contributor-name {
+        font-family: 'Cinzel', serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.2;
+      }
+      .am-contributor-count {
+        font-family: 'VT323', monospace;
+        font-size: 13px;
+        color: {{.Theme.Colors.Secondary}};
+        margin-top: 2px;
+      }
+
+      /* Footer */
+      .am-footer {
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        padding-top: 24px;
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .am-footer-binary {
+        font-family: 'VT323', monospace;
+        font-size: 11px;
+        color: {{.Theme.Colors.Secondary}};
+        opacity: 0.4;
+        letter-spacing: 0.1em;
+      }
+      .am-footer-text {
+        font-family: 'Cinzel', serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        letter-spacing: 0.08em;
+      }
+      .am-footer-logo {
+        display: flex;
+        align-items: center;
+        color: {{.Theme.Colors.Primary}};
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+      .am-footer-logo svg { width: 24px; height: 24px; }
+    </style>
+  </head>
+  <body>
+
+    <div class="am-binary-rain">
+      <div class="am-binary-rain-inner">01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000</div>
+    </div>
+
+    <header class="am-header">
+      <div class="am-header-inner">
+        <div class="am-header-eyebrow">{{.RepoName}} // Constructo Designado</div>
+        <div class="am-header-title">Letanía Sagrada</div>
+        <div class="am-header-binary">01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011</div>
+        <div class="am-header-meta">
+          {{if .Version}}<span class="am-header-version">Edicto {{.Version}}</span>{{end}}
+          {{if .Generated}}<span>{{.Generated}}</span>{{end}}
+        </div>
+      </div>
+    </header>
+
+    <main class="am-page">
+
+      {{if .Content}}
+      <div class="am-narrative">{{.Content}}</div>
+      {{end}}
+
+      {{if .Items}}
+
+      <div class="am-stats">
+        <div class="am-stat-card">
+          <div class="am-stat-value">{{len .Items}}</div>
+          <div class="am-stat-label">// Ritos Totales</div>
+        </div>
+        <div class="am-stat-card">
+          <div class="am-stat-value" id="am-feat-count">—</div>
+          <div class="am-stat-label">// Augmentaciones</div>
+        </div>
+        <div class="am-stat-card">
+          <div class="am-stat-value" id="am-fix-count">—</div>
+          <div class="am-stat-label">// Herejías Purgadas</div>
+        </div>
+        <div class="am-stat-card">
+          <div class="am-stat-value" id="am-break-count">—</div>
+          <div class="am-stat-label">// Cismas</div>
+        </div>
+      </div>
+
+      <div class="am-section-label">Ritos Sagrados Realizados</div>
+      <div class="am-commits">
+        {{range .Items}}
+        <div class="am-item-row{{if eq (lower .Type) "breaking"}} breaking-row{{end}}">
+          <span class="am-type-badge type-{{lower .Type}}">{{.Icon}} {{.Type}}</span>
+          <span class="am-item-msg">{{.Message}}</span>
+          <span class="am-item-hash">{{.Hash}}</span>
+          <span class="am-item-author">{{.Author}}</span>
+        </div>
+        {{end}}
+      </div>
+
+      <div class="am-section-label">Registro de Actividad Temporal</div>
+      <div class="am-charts">
+        <div class="am-chart-card">
+          <div class="am-chart-title">Registro de Actividad Temporal</div>
+          <div class="am-chart-wrap">
+            <canvas id="amActivityChart"></canvas>
+          </div>
+        </div>
+        <div class="am-chart-card">
+          <div class="am-chart-title">Clasificación de Ritos</div>
+          <div class="am-chart-wrap">
+            <canvas id="amTypeChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var items = [
+          {{range .Items}}
+          { type: "{{lower .Type}}" },
+          {{end}}
+        ];
+        var counts = {};
+        items.forEach(function(i) {
+          counts[i.type] = (counts[i.type] || 0) + 1;
+        });
+        var featCount = counts["feat"] || counts["feature"] || 0;
+        var fixCount = counts["fix"] || 0;
+        var breakCount = counts["breaking"] || 0;
+        var el1 = document.getElementById("am-feat-count");
+        var el2 = document.getElementById("am-fix-count");
+        var el3 = document.getElementById("am-break-count");
+        if (el1) el1.textContent = featCount;
+        if (el2) el2.textContent = fixCount;
+        if (el3) el3.textContent = breakCount;
+
+        /* Activity bar chart — group by date */
+        var dateMap = {};
+        [{{range .Items}}"{{.Date}}",{{end}}].forEach(function(d) {
+          var key = d.substring(0, 7) || d;
+          dateMap[key] = (dateMap[key] || 0) + 1;
+        });
+        var actLabels = Object.keys(dateMap).sort();
+        var actData = actLabels.map(function(k) { return dateMap[k]; });
+
+        var actCtx = document.getElementById("amActivityChart");
+        if (actCtx && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(actCtx, {
+                type: "bar",
+                data: {
+                  labels: actLabels,
+                  datasets: [{
+                    label: "Ritos",
+                    data: actData,
+                    /* Primary red — C41E2A */
+                    backgroundColor: "#C41E2A",
+                    borderRadius: 2,
+                    borderSkipped: false
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      /* Border color — 2A1A0F */
+                      grid: { color: "#2A1A0F" },
+                      ticks: {
+                        color: "#C8B89A",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 }
+                      }
+                    },
+                    y: {
+                      grid: { color: "#2A1A0F" },
+                      ticks: {
+                        color: "#C8B89A",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 },
+                        precision: 0
+                      }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Chart error:", e); }
+          }, 100);
+        }
+
+        /* Donut chart — rite classification */
+        var vocabMap = { {{range $k, $v := .Vocabulary}}"{{$k}}": "{{$v}}", {{end}} };
+        var rawTypeLabels = Object.keys(counts);
+        var typeLabels = rawTypeLabels.map(function(k) { return vocabMap[k] || k; });
+        var typeData = rawTypeLabels.map(function(k) { return counts[k]; });
+        /* Palette: red, gold, dark red, brown border, muted, lighter, warm */
+        var palette = ["#C41E2A", "#B8860B", "#8B0000", "#2A1A0F", "#6B4423", "#A0522D", "#CD853F"];
+        while (palette.length < typeLabels.length) {
+          palette.push(palette[palette.length - 1]);
+        }
+        var typeCtx = document.getElementById("amTypeChart");
+        if (typeCtx && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(typeCtx, {
+                type: "doughnut",
+                data: {
+                  labels: typeLabels,
+                  datasets: [{
+                    data: typeData,
+                    backgroundColor: palette.slice(0, typeLabels.length),
+                    borderWidth: 0
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: {
+                      position: "right",
+                      labels: {
+                        color: "#C8B89A",
+                        font: { family: "'Share Tech Mono', monospace", size: 11 },
+                        padding: 12
+                      }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+
+      {{if .Contributors}}
+      <div class="am-section-label">Tech-Sacerdotes Registrados</div>
+      <div class="am-contributors">
+        {{range .Contributors}}
+        <div class="am-contributor-card">
+          <div class="am-avatar">{{initials .Name}}</div>
+          <div class="am-contributor-info">
+            <div class="am-contributor-name">{{.Name}}</div>
+            <div class="am-contributor-count">// {{.Count}} ritos realizados</div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+
+      <div class="am-section-label">Jerarquía del Omnissiah</div>
+      <div class="am-chart-card">
+        <div style="position: relative; height: 220px;">
+          <canvas id="amContribChart"></canvas>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var contribNames  = [{{range .Contributors}}"{{.Name}}",{{end}}];
+        var contribCounts = [{{range .Contributors}}{{.Count}},{{end}}];
+        var ctx = document.getElementById("amContribChart");
+        if (ctx && contribNames.length > 0 && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: contribNames,
+                  datasets: [{
+                    label: "Ritos",
+                    data: contribCounts,
+                    /* Primary red — C41E2A */
+                    backgroundColor: "#C41E2A",
+                    borderRadius: 2,
+                    borderSkipped: false
+                  }]
+                },
+                options: {
+                  indexAxis: "y",
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                      /* Border color — 2A1A0F */
+                      grid: { color: "#2A1A0F" },
+                      ticks: { color: "#C8B89A", font: { family: "'Share Tech Mono', monospace", size: 10 } }
+                    },
+                    y: {
+                      grid: { display: false },
+                      ticks: { color: "#C8B89A", font: { family: "'Cinzel', serif", size: 11 } }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Contrib chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+      {{end}}
+
+      {{end}}
+
+      <footer class="am-footer">
+        {{if .Theme.Logo}}
+        <div class="am-footer-logo">{{safeHTML .Theme.Logo}}</div>
+        {{end}}
+        <div class="am-footer-binary">01001101 01000101 01000011 01001000</div>
+        <div class="am-footer-text">EL OMNISSIAH PROTEGE</div>
+      </footer>
+
+    </main>
+  </body>
+  </html>
+
+html_template_story: |
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Designio del Omnissiah — {{.RepoName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: {{.Theme.Typography.FontSizeBase}}; }
+      body {
+        font-family: 'Share Tech Mono', {{safeCSS .Theme.Typography.FontFamily}};
+        background: {{.Theme.Colors.Background}};
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.6;
+        min-height: 100vh;
+        position: relative;
+      }
+      /* Red vignette overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(ellipse at center, transparent 50%, rgba(196, 30, 42, 0.08) 100%);
+        pointer-events: none;
+        z-index: 9998;
+      }
+      a { color: {{.Theme.Colors.Secondary}}; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      /* Binary rain strip */
+      @keyframes binaryScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .am-binary-rain {
+        width: 100%;
+        overflow: hidden;
+        background: {{.Theme.Colors.Background}};
+        border-bottom: 1px solid {{.Theme.Colors.Border}};
+        height: 20px;
+        position: relative;
+      }
+      .am-binary-rain-inner {
+        font-family: 'VT323', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Primary}};
+        opacity: 0.25;
+        white-space: nowrap;
+        animation: binaryScroll 30s linear infinite;
+        line-height: 20px;
+      }
+
+      /* Header */
+      .nl-header {
+        min-height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        background: linear-gradient(180deg, {{.Theme.Colors.Surface}} 0%, {{.Theme.Colors.Background}} 100%);
+        border-bottom: 2px solid {{.Theme.Colors.Primary}};
+        position: relative;
+        overflow: hidden;
+        padding: 32px 24px;
+      }
+      .nl-header-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .nl-header-eyebrow {
+        font-family: 'VT323', monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: {{.Theme.Colors.Secondary}};
+      }
+      .nl-header-title {
+        font-family: 'Cinzel', serif;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: {{.Theme.Colors.Primary}};
+        line-height: 1;
+        text-shadow: 0 0 20px rgba(196, 30, 42, 0.4);
+      }
+      .nl-header-binary {
+        font-family: 'VT323', monospace;
+        font-size: 11px;
+        color: {{.Theme.Colors.Secondary}};
+        opacity: 0.5;
+        letter-spacing: 0.15em;
+      }
+      .nl-header-meta {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.6;
+        letter-spacing: 0.05em;
+      }
+
+      /* Layout */
+      .nl-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 32px 88px;
+      }
+
+      /* Section label */
+      .nl-section-label {
+        font-family: 'Cinzel', serif;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Primary}};
+        margin-bottom: 18px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid {{.Theme.Colors.Primary}};
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nl-section-label::before {
+        content: "01001101";
+        font-family: 'VT323', monospace;
+        font-size: 10px;
+        color: {{.Theme.Colors.Secondary}};
+        opacity: 0.7;
+      }
+
+      /* Stats — 5 cards */
+      .nl-stats {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+        margin-bottom: 48px;
+      }
+      @media (max-width: 780px) {
+        .nl-stats { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 520px) {
+        .nl-stats { grid-template-columns: repeat(2, 1fr); }
+      }
+      .nl-stat-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+        padding: 20px 16px;
+        text-align: center;
+      }
+      .nl-stat-value {
+        font-family: 'Cinzel', serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Secondary}};
+        line-height: 1;
+        margin-bottom: 6px;
+        text-shadow: 0 0 12px rgba(184, 134, 11, 0.3);
+        word-break: break-word;
+      }
+      .nl-stat-label {
+        font-family: 'VT323', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Primary}};
+      }
+
+      /* Narrative */
+      .nl-narrative {
+        max-width: 740px;
+        margin: 0 auto 52px;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .nl-narrative h1, .nl-narrative h2, .nl-narrative h3 {
+        font-family: 'Cinzel', serif;
+        color: {{.Theme.Colors.Primary}};
+        font-weight: 700;
+        margin-bottom: 12px;
+        margin-top: 28px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .nl-narrative h1 { font-size: 22px; margin-top: 0; }
+      .nl-narrative h2 { font-size: 17px; }
+      .nl-narrative h3 { font-size: 14px; color: {{.Theme.Colors.Secondary}}; }
+      .nl-narrative p { color: {{.Theme.Colors.Text}}; margin-bottom: 14px; }
+      .nl-narrative ul, .nl-narrative ol { padding-left: 20px; margin-bottom: 14px; }
+      .nl-narrative li { line-height: 1.8; margin-bottom: 4px; color: {{.Theme.Colors.Text}}; }
+      .nl-narrative strong { font-weight: 700; color: {{.Theme.Colors.Primary}}; }
+      .nl-narrative em { color: {{.Theme.Colors.Secondary}}; }
+      .nl-narrative code {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 1px 5px;
+        font-size: {{.Theme.Typography.FontSizeCode}};
+        color: {{.Theme.Colors.Secondary}};
+        font-family: 'VT323', monospace;
+      }
+      .nl-narrative pre {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 16px;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+      .nl-narrative pre code { background: none; border: none; padding: 0; color: {{.Theme.Colors.Text}}; }
+      .nl-narrative hr {
+        border: none;
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        margin: 24px 0;
+      }
+      .nl-narrative blockquote {
+        border-left: 3px solid {{.Theme.Colors.Primary}};
+        padding-left: 16px;
+        color: {{.Theme.Colors.Secondary}};
+        margin: 0 0 14px;
+      }
+
+      /* Activity chart */
+      .nl-chart-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+        padding: 24px;
+        margin-bottom: 48px;
+      }
+      .nl-chart-title {
+        font-family: 'Cinzel', serif;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: {{.Theme.Colors.Primary}};
+        margin-bottom: 20px;
+      }
+      .nl-chart-wrap {
+        position: relative;
+        height: 220px;
+      }
+
+      /* Data conduit timeline */
+      .nl-timeline {
+        position: relative;
+        margin-bottom: 52px;
+        padding-left: 40px;
+      }
+      .nl-timeline::before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        border-left: 2px dashed {{.Theme.Colors.Primary}};
+        opacity: 0.4;
+      }
+      .nl-timeline-node {
+        position: relative;
+        margin-bottom: 24px;
+      }
+      .nl-timeline-node::before {
+        content: "\26ED";
+        position: absolute;
+        left: -33px;
+        top: 4px;
+        font-size: 14px;
+        color: {{.Theme.Colors.Primary}};
+      }
+      .nl-timeline-month {
+        font-family: 'Cinzel', serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .nl-timeline-count {
+        font-family: 'VT323', monospace;
+        font-size: 13px;
+        color: {{.Theme.Colors.Secondary}};
+        letter-spacing: 0.1em;
+      }
+      .nl-timeline-bar {
+        margin-top: 8px;
+        height: 4px;
+        background: {{.Theme.Colors.Border}};
+        overflow: hidden;
+      }
+      .nl-timeline-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, {{.Theme.Colors.Accent}}, {{.Theme.Colors.Primary}});
+        transition: width 0.8s ease;
+      }
+
+      /* Contributor cards */
+      .nl-contributors {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 12px;
+        margin-bottom: 52px;
+      }
+      .nl-contributor-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        box-shadow: inset 0 0 0 2px {{.Theme.Colors.Background}}, inset 0 0 0 3px rgba(196, 30, 42, 0.3);
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .nl-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: {{.Theme.Colors.Primary}};
+        color: {{.Theme.Colors.Secondary}};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cinzel', serif;
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+        box-shadow: 0 0 8px rgba(196, 30, 42, 0.4);
+      }
+      .nl-contributor-info {}
+      .nl-contributor-name {
+        font-family: 'Cinzel', serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.2;
+      }
+      .nl-contributor-count {
+        font-family: 'VT323', monospace;
+        font-size: 13px;
+        color: {{.Theme.Colors.Secondary}};
+        margin-top: 2px;
+      }
+      .nl-contributor-joined {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.4;
+        margin-top: 2px;
+      }
+
+      /* Tags — wax seal entries */
+      .nl-tags {
+        margin-bottom: 52px;
+      }
+      .nl-tag-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid {{.Theme.Colors.Border}};
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 13px;
+      }
+      .nl-tag-row:last-child { border-bottom: none; }
+      .nl-tag-seal {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: {{.Theme.Colors.Primary}};
+        color: {{.Theme.Colors.Secondary}};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'VT323', monospace;
+        font-size: 8px;
+        font-weight: 700;
+        flex-shrink: 0;
+        box-shadow: 0 0 6px rgba(196, 30, 42, 0.3);
+      }
+      .nl-tag-name {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        letter-spacing: 0.04em;
+      }
+      .nl-tag-date {
+        font-size: 11px;
+        color: {{.Theme.Colors.Secondary}};
+        margin-left: auto;
+      }
+      .nl-tag-hash {
+        font-family: 'VT323', monospace;
+        font-size: 11px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.4;
+      }
+
+      /* Footer */
+      .nl-footer {
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        padding-top: 24px;
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .nl-footer-binary {
+        font-family: 'VT323', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Secondary}};
+        opacity: 0.5;
+        letter-spacing: 0.1em;
+      }
+      .nl-footer-text {
+        font-family: 'Cinzel', serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        letter-spacing: 0.08em;
+      }
+      .nl-footer-logo {
+        display: flex;
+        align-items: center;
+        color: {{.Theme.Colors.Primary}};
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+      .nl-footer-logo svg { width: 24px; height: 24px; }
+
+      /* Mechanicus boot animation — data corruption flicker */
+      @media (prefers-reduced-motion: no-preference) {
+        @keyframes mechanicus-boot {
+          0%   { opacity: 0; letter-spacing: 0.8em; color: #2A1A0F; }
+          20%  { opacity: 0.3; letter-spacing: 0.4em; color: #8B0000; }
+          40%  { opacity: 0.7; letter-spacing: 0.2em; color: #C41E2A; }
+          60%  { opacity: 0.9; letter-spacing: 0.1em; color: #C41E2A; }
+          80%  { opacity: 1; letter-spacing: 0.05em; color: #C41E2A; }
+          100% { opacity: 1; letter-spacing: 0.05em; color: #C41E2A; }
+        }
+        @keyframes binary-reveal {
+          0%   { opacity: 0; }
+          80%  { opacity: 0; }
+          100% { opacity: 0.6; }
+        }
+        .nl-header-title {
+          animation: mechanicus-boot 3s ease forwards;
+          animation-iteration-count: 1;
+        }
+        .nl-header-binary-reveal {
+          font-family: 'VT323', monospace;
+          font-size: 14px;
+          color: #B8860B;
+          opacity: 0;
+          animation: binary-reveal 3s ease forwards;
+          animation-iteration-count: 1;
+          letter-spacing: 0.1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="am-binary-rain">
+      <div class="am-binary-rain-inner">01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000 01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011 00100000</div>
+    </div>
+
+    <header class="nl-header">
+      <div class="nl-header-inner">
+        <div class="nl-header-eyebrow">{{.RepoName}} // Constructo Designado</div>
+        <div class="nl-header-title">Gran Designio del Omnissiah</div>
+        <div class="nl-header-binary">01001101 01000101 01000011 01001000 01000001 01001110 01001001 01000011 01010101 01010011</div>
+        <div class="nl-header-binary-reveal">01001111 01001101 01001110 01001001 01010011 01010011 01000001 01001000</div>
+        {{if or .FirstDate .Generated}}
+        <div class="nl-header-meta">
+          {{if .FirstDate}}<span>{{.FirstDate}}</span>{{end}}
+          {{if and .FirstDate .Generated}}<span>→</span>{{end}}
+          {{if .Generated}}<span>{{.Generated}}</span>{{end}}
+        </div>
+        {{end}}
+      </div>
+    </header>
+
+    <main class="nl-page">
+
+      <div class="nl-section-label">Estadísticas del Sistema</div>
+      <div class="nl-stats">
+        <div class="nl-stat-card">
+          <div class="nl-stat-value">{{.TotalCommits}}</div>
+          <div class="nl-stat-label">// Ritos Totales</div>
+        </div>
+        <div class="nl-stat-card">
+          <div class="nl-stat-value">{{len .Contributors}}</div>
+          <div class="nl-stat-label">// Tech-Sacerdotes</div>
+        </div>
+        <div class="nl-stat-card">
+          <div class="nl-stat-value" style="font-size:16px;padding-top:6px">{{.FirstDate}}</div>
+          <div class="nl-stat-label">// Primera Comunión</div>
+        </div>
+        <div class="nl-stat-card">
+          <div class="nl-stat-value" style="font-size:16px;padding-top:6px">{{.Generated}}</div>
+          <div class="nl-stat-label">// Última Transmisión</div>
+        </div>
+        <div class="nl-stat-card" id="nl-peak-stat">
+          {{if .Peaks}}
+          <div class="nl-stat-value" style="font-size:16px;padding-top:6px" id="nl-peak-month">—</div>
+          {{else}}
+          <div class="nl-stat-value">—</div>
+          {{end}}
+          <div class="nl-stat-label">// Comunión Cumbre</div>
+        </div>
+      </div>
+
+      {{if .Content}}
+      <div class="nl-narrative">{{.Content}}</div>
+      {{end}}
+
+      {{if .Peaks}}
+      <div class="nl-section-label">Intensidad de Comunión en el Tiempo</div>
+      <div class="nl-chart-card">
+        <div class="nl-chart-title">Intensidad de Comunión en el Tiempo</div>
+        <div class="nl-chart-wrap">
+          <canvas id="nlActivityChart"></canvas>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        function hexToRgba(hex, alpha) {
+          hex = hex.replace('#', '');
+          if (hex.length === 3) hex = hex.split('').map(function(c){return c+c;}).join('');
+          var r = parseInt(hex.substring(0,2),16);
+          var g = parseInt(hex.substring(2,4),16);
+          var b = parseInt(hex.substring(4,6),16);
+          return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+        }
+        var labels = [{{range .Peaks}}"{{.Month}}",{{end}}];
+        var data   = [{{range .Peaks}}{{.Count}},{{end}}];
+        var maxVal = Math.max.apply(null, data) || 1;
+
+        var peakIdx = data.indexOf(maxVal);
+        var peakEl = document.getElementById("nl-peak-month");
+        if (peakEl && labels[peakIdx]) {
+          peakEl.textContent = labels[peakIdx];
+        }
+
+        var fills = document.querySelectorAll(".nl-timeline-bar-fill");
+        fills.forEach(function(el) {
+          var pct = el.getAttribute("data-pct") || "0";
+          el.style.width = pct + "%";
+        });
+
+        var ctx = document.getElementById("nlActivityChart");
+        if (ctx && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(ctx, {
+                type: "line",
+                data: {
+                  labels: labels,
+                  datasets: [{
+                    label: "Ritos",
+                    data: data,
+                    /* Primary red line — C41E2A */
+                    borderColor: "#C41E2A",
+                    /* Gold fill below — B8860B at low opacity */
+                    backgroundColor: hexToRgba("#B8860B", 0.08),
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: "#C41E2A",
+                    pointBorderColor: "#C41E2A",
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      grid: { color: "#2A1A0F" },
+                      ticks: {
+                        color: "#C8B89A",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 }
+                      }
+                    },
+                    y: {
+                      grid: { color: "#2A1A0F" },
+                      ticks: {
+                        color: "#C8B89A",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 },
+                        precision: 0
+                      }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+
+      <div class="nl-section-label">Momentos de Comunión Divina</div>
+      <div class="nl-timeline">
+        {{$peaks := .Peaks}}
+        {{$maxCount := 1}}
+        {{range $peaks}}{{if gt .Count $maxCount}}{{$maxCount = .Count}}{{end}}{{end}}
+        {{range $peaks}}
+        {{$pct := 0.0}}
+        {{if gt $maxCount 0}}{{$pct = mul (divf .Count $maxCount) 100.0}}{{end}}
+        <div class="nl-timeline-node">
+          <div class="nl-timeline-month">{{.Month}}</div>
+          <div class="nl-timeline-count">// {{.Count}} ritos realizados</div>
+          <div class="nl-timeline-bar">
+            <div class="nl-timeline-bar-fill" data-pct="{{$pct}}"></div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+      {{end}}
+
+      {{if .Tags}}
+      <div class="nl-section-label">Eventos Doctrinales Sagrados</div>
+      <div class="nl-tags">
+        {{range .Tags}}
+        <div class="nl-tag-row">
+          <div class="nl-tag-seal">01</div>
+          <span class="nl-tag-name">{{.Name}}</span>
+          <span class="nl-tag-hash">{{.Hash}}</span>
+          <span class="nl-tag-date">{{.Date}}</span>
+        </div>
+        {{end}}
+      </div>
+      {{end}}
+
+      {{if .Contributors}}
+      <div class="nl-section-label">Los Tech-Sacerdotes Ordenados</div>
+      <div class="nl-contributors">
+        {{range .Contributors}}
+        <div class="nl-contributor-card">
+          <div class="nl-avatar">{{initials .Name}}</div>
+          <div class="nl-contributor-info">
+            <div class="nl-contributor-name">{{.Name}}</div>
+            <div class="nl-contributor-count">// {{.Count}} ritos</div>
+            {{if .Date}}<div class="nl-contributor-joined">Ordenado {{.Date}}</div>{{end}}
+          </div>
+        </div>
+        {{end}}
+      </div>
+
+      <div class="nl-section-label">Jerarquía del Omnissiah</div>
+      <div class="nl-chart-card">
+        <div style="position: relative; height: 220px;">
+          <canvas id="am-contrib-chart"></canvas>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var contribNames  = [{{range .Contributors}}"{{.Name}}",{{end}}];
+        var contribCounts = [{{range .Contributors}}{{.Count}},{{end}}];
+        var ctx = document.getElementById("am-contrib-chart");
+        if (ctx && contribNames.length > 0 && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: contribNames,
+                  datasets: [{
+                    label: "Ritos",
+                    data: contribCounts,
+                    /* Primary red — C41E2A */
+                    backgroundColor: "#C41E2A",
+                    borderRadius: 2,
+                    borderSkipped: false
+                  }]
+                },
+                options: {
+                  indexAxis: "y",
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                      grid: { color: "#2A1A0F" },
+                      ticks: { color: "#C8B89A", font: { family: "'Share Tech Mono', monospace", size: 10 } }
+                    },
+                    y: {
+                      grid: { display: false },
+                      ticks: { color: "#C8B89A", font: { family: "'Cinzel', serif", size: 11 } }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Contrib chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+      {{end}}
+
+      <footer class="nl-footer">
+        {{if .Theme.Logo}}
+        <div class="nl-footer-logo">{{safeHTML .Theme.Logo}}</div>
+        {{end}}
+        <div class="nl-footer-binary">01000101 01001110 01000100 // FIN DE TRANSMISIÓN</div>
+        <div class="nl-footer-text">EL OMNISSIAH PROTEGE</div>
+      </footer>
+
+    </main>
+  </body>
+  </html>

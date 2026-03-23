@@ -9,6 +9,16 @@
     "download": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/cyberpunk.shipstyle"
   },
   {
+    "name": "cyberpunk-es",
+    "description": "Ciudad Nocturna nunca duerme. Tampoco tu changelog.",
+    "author": "commitlore",
+    "version": "1.0.0",
+    "tags": ["dark", "neon", "cyberpunk", "gaming", "español"],
+    "language": "es",
+    "preview": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/preview.svg",
+    "download": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/cyberpunk.es.shipstyle"
+  },
+  {
     "name": "adeptus-mechanicus",
     "description": "In the name of the Omnissiah. All knowledge is sacred.",
     "author": "commitlore",
@@ -16,5 +26,15 @@
     "tags": ["dark", "warhammer", "40k", "grimdark", "sacerdotal", "binary"],
     "preview": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/adeptus-mechanicus/preview.svg",
     "download": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/adeptus-mechanicus/adeptus-mechanicus.shipstyle"
+  },
+  {
+    "name": "adeptus-mechanicus-es",
+    "description": "En el nombre del Omnissiah. Todo conocimiento es sagrado.",
+    "author": "commitlore",
+    "version": "1.0.0",
+    "tags": ["dark", "warhammer", "40k", "grimdark", "sacerdotal", "español"],
+    "language": "es",
+    "preview": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/adeptus-mechanicus/preview.svg",
+    "download": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/adeptus-mechanicus/adeptus-mechanicus.es.shipstyle"
   }
 ]
