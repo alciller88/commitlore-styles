@@ -1,0 +1,1433 @@
+name: "cyberpunk"
+version: "1.0.0"
+description: "Night City never sleeps. Neither does your changelog."
+author: "commitlore"
+tags: ["dark", "neon", "cyberpunk", "gaming", "futuristic"]
+preview_url: ""
+homepage: ""
+
+theme:
+  mode: "dark"
+  colors:
+    primary: "#FCEE09"
+    secondary: "#FF2D6B"
+    background: "#0A0A0F"
+    surface: "#12121A"
+    text: "#E0E0E0"
+    accent: "#00D9FF"
+    border: "#1E1E2E"
+  typography:
+    font_family: "'Orbitron', 'Rajdhani', monospace"
+    font_size_base: "14px"
+    font_size_header: "22px"
+    font_size_code: "13px"
+  logo: |
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M2 17L12 3L22 17H2Z" fill="#FCEE09" opacity="0.9"/>
+      <path d="M4 17L12 5L20 17H4Z" fill="none" stroke="#00D9FF" stroke-width="0.5" opacity="0.6" transform="translate(0.5, -0.5)"/>
+      <text x="12" y="15" text-anchor="middle" font-family="monospace" font-size="5" font-weight="bold" fill="#0A0A0F">CL</text>
+    </svg>
+  header_image: ""
+  card_style: "bordered"
+  animations: true
+  custom_css: ""
+  window_controls:
+    default: "#1E1E2E"
+    close: "#FF2D6B"
+    minimize: "#FCEE09"
+    maximize: "#00D9FF"
+
+terminal:
+  colors:
+    header: "yellow"
+    feature: "cyan"
+    fix: "blue"
+    breaking: "red"
+    footer: "magenta"
+  decorators:
+    separator: "// ─────────────────────────────────────"
+    bullet: "›"
+    indent: "  "
+  density: "normal"
+
+llm_prompt: |
+  You are a street-level fixer compiling a data breach report for Night City.
+  Every commit is a job run by a netrunner crew. Group them by operation type:
+  UPGRADES (features), PATCHES (fixes), SYSTEM ALERTS (breaking changes),
+  MAINTENANCE (chores/refactors), and INTEL (docs/tests).
+  Write in clipped, professional cyberpunk tone — corporate dystopia meets
+  street slang. Reference corpo tech jargon: "firmware push", "neural patch",
+  "zero-day sealed", "daemon deployed". Keep it punchy: short sentences,
+  no filler. Use markdown formatting with headers for each category.
+  Begin with a 2-sentence executive briefing in corp-speak.
+  IMPORTANT: Base your output EXCLUSIVELY on the commits provided in the data
+  section below. Do not invent features, fixes, or changes that are not present
+  in the commit data. Every item must correspond to a real commit. Summarize
+  faithfully — do not fabricate operations, netrunners, or jobs.
+
+vocabulary:
+  bug: "glitch"
+  fix: "patch"
+  feature: "upgrade"
+  release: "drop"
+  update: "sync"
+  remove: "flatline"
+  add: "install"
+  improve: "overclock"
+
+ui_labels:
+  dashboard: "NIGHT CITY"
+  generate: "COMPILE"
+  generate_button: "RUN COMPILE"
+  story: "NEURAL LINK"
+  story_button: "JACK IN"
+  history: "DATA LOGS"
+  contributors: "NETRUNNERS"
+  styles: "CHROME"
+  settings: "HARDWIRE"
+  marketplace: "RIPPERDOC"
+
+icons:
+  feature: "▲"
+  fix: "◆"
+  breaking: "⚡"
+  chore: "⚙"
+  docs: "◈"
+  test: "◉"
+  story_peak: "▰▰▰"
+  bullet: "›"
+  separator: "// ─────────────────────────────────────"
+
+templates:
+  header: |
+    # SYSTEM LOG — {{.Version}}
+    _Compiled {{.Date}} // Night City Local_
+  feature: "- ▲ UPGRADE: {{.Message}} (`{{.Hash}}` — {{.Author}})"
+  fix: "- ◆ PATCH: {{.Message}} (`{{.Hash}}` — {{.Author}})"
+  breaking: "- ⚡ SYSTEM ALERT: {{.Message}} (`{{.Hash}}` — {{.Author}})"
+  footer: |
+    ---
+    _// COMPILED BY COMMITLORE — End of transmission_
+  story_intro: |
+    ## NEURAL LINK REPORT
+    Network initialized {{.FirstCommitDate}} by {{.FirstAuthor}}.
+    {{.TotalCommits}} operations logged. {{.TotalContributors}} netrunners active.
+  story_milestone: "- {{.Name}} (`{{.Hash | short}}`) — logged {{.Date}}"
+  story_peak: "OVERCLOCK: {{.Month}} — {{.Count}} operations"
+  story_contributor: "- **{{.Name}}** — first jack-in {{.Date}}"
+  story_footer: "_// END NEURAL LINK TRANSMISSION — CommitLore_"
+
+html_template_changelog: |
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} — {{.RepoName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: {{.Theme.Typography.FontSizeBase}}; }
+      body {
+        font-family: 'Share Tech Mono', {{safeCSS .Theme.Typography.FontFamily}};
+        background: {{.Theme.Colors.Background}};
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.6;
+        min-height: 100vh;
+        position: relative;
+      }
+      /* Scanlines overlay */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0,0,0,0.08) 2px,
+          rgba(0,0,0,0.08) 4px
+        );
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.4;
+      }
+      a { color: {{.Theme.Colors.Accent}}; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code, pre {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: {{.Theme.Typography.FontSizeCode}};
+      }
+
+      /* Glitch animation */
+      @keyframes glitch {
+        0%, 90%, 100% { transform: translate(0); }
+        92% { transform: translate(-2px, 1px); }
+        94% { transform: translate(2px, -1px); }
+        96% { transform: translate(-1px, -1px); }
+        98% { transform: translate(1px, 1px); }
+      }
+      @keyframes glitchBefore {
+        0%, 90%, 100% { clip-path: inset(0 0 100% 0); opacity: 0; }
+        92% { clip-path: inset(20% 0 40% 0); opacity: 0.8; }
+        94% { clip-path: inset(60% 0 10% 0); opacity: 0.8; }
+        96% { clip-path: inset(10% 0 70% 0); opacity: 0; }
+      }
+      @keyframes glitchAfter {
+        0%, 90%, 100% { clip-path: inset(0 0 100% 0); opacity: 0; }
+        91% { clip-path: inset(50% 0 20% 0); opacity: 0.6; }
+        93% { clip-path: inset(10% 0 60% 0); opacity: 0.6; }
+        95% { clip-path: inset(40% 0 30% 0); opacity: 0; }
+      }
+      .glitch-text {
+        position: relative;
+        animation: glitch 4s infinite;
+      }
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .glitch-text::before {
+        color: {{.Theme.Colors.Accent}};
+        animation: glitchBefore 4s infinite;
+        transform: translate(-2px, 0);
+      }
+      .glitch-text::after {
+        color: {{.Theme.Colors.Secondary}};
+        animation: glitchAfter 4s infinite;
+        transform: translate(2px, 0);
+      }
+
+      /* Pulse animation for breaking changes */
+      @keyframes pulse-border {
+        0%, 100% { border-color: {{.Theme.Colors.Secondary}}; }
+        50% { border-color: transparent; }
+      }
+
+      /* Cut corner clip path */
+      .cut-corners {
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      }
+
+      /* Header */
+      .cp-header {
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        background: linear-gradient(180deg, {{.Theme.Colors.Surface}} 0%, {{.Theme.Colors.Background}} 100%);
+        border-bottom: 2px solid {{.Theme.Colors.Primary}};
+        position: relative;
+        overflow: hidden;
+        padding: 32px 24px;
+      }
+      .cp-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(252, 238, 9, 0.03) 60px,
+          rgba(252, 238, 9, 0.03) 61px
+        );
+        pointer-events: none;
+      }
+      .cp-header-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .cp-header-eyebrow {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: {{.Theme.Colors.Accent}};
+      }
+      .cp-header-title {
+        font-family: 'Orbitron', monospace;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: {{.Theme.Colors.Primary}};
+        line-height: 1;
+        text-shadow: 0 0 20px rgba(252, 238, 9, 0.4), 0 0 40px rgba(252, 238, 9, 0.1);
+      }
+      .cp-header-meta {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Text}};
+        letter-spacing: 0.05em;
+        opacity: 0.6;
+      }
+      .cp-header-version {
+        color: {{.Theme.Colors.Primary}};
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      /* Layout */
+      .cp-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 32px 80px;
+      }
+
+      /* Section label */
+      .cp-section-label {
+        font-family: 'Orbitron', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: {{.Theme.Colors.Primary}};
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid {{.Theme.Colors.Primary}};
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cp-section-label::before {
+        content: "//";
+        color: {{.Theme.Colors.Accent}};
+        opacity: 0.6;
+      }
+
+      /* Narrative */
+      .cp-narrative {
+        max-width: 720px;
+        margin: 0 auto 48px;
+      }
+      .cp-narrative h1, .cp-narrative h2, .cp-narrative h3 {
+        font-family: 'Orbitron', monospace;
+        color: {{.Theme.Colors.Primary}};
+        font-weight: 700;
+        margin-bottom: 12px;
+        margin-top: 28px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .cp-narrative h1 { font-size: 22px; margin-top: 0; }
+      .cp-narrative h2 { font-size: 17px; }
+      .cp-narrative h3 { font-size: 14px; color: {{.Theme.Colors.Accent}}; }
+      .cp-narrative p {
+        line-height: 1.8;
+        color: {{.Theme.Colors.Text}};
+        margin-bottom: 14px;
+        font-size: 14px;
+      }
+      .cp-narrative ul, .cp-narrative ol { padding-left: 20px; margin-bottom: 14px; }
+      .cp-narrative li { line-height: 1.8; margin-bottom: 4px; color: {{.Theme.Colors.Text}}; }
+      .cp-narrative strong { font-weight: 700; color: {{.Theme.Colors.Primary}}; }
+      .cp-narrative em { color: {{.Theme.Colors.Accent}}; }
+      .cp-narrative code {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 1px 5px;
+        font-size: {{.Theme.Typography.FontSizeCode}};
+        color: {{.Theme.Colors.Accent}};
+      }
+      .cp-narrative pre {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 16px;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+      .cp-narrative pre code { background: none; border: none; padding: 0; color: {{.Theme.Colors.Text}}; }
+      .cp-narrative hr {
+        border: none;
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        margin: 24px 0;
+      }
+      .cp-narrative blockquote {
+        border-left: 3px solid {{.Theme.Colors.Accent}};
+        padding-left: 16px;
+        color: {{.Theme.Colors.Accent}};
+        margin: 0 0 14px;
+        font-style: italic;
+      }
+
+      /* Stats row */
+      .cp-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-bottom: 48px;
+      }
+      @media (max-width: 680px) {
+        .cp-stats { grid-template-columns: repeat(2, 1fr); }
+      }
+      .cp-stat-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        padding: 20px 16px;
+        text-align: center;
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      }
+      .cp-stat-value {
+        font-family: 'Orbitron', monospace;
+        font-size: 28px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        letter-spacing: -0.01em;
+        line-height: 1;
+        margin-bottom: 6px;
+        text-shadow: 0 0 12px rgba(252, 238, 9, 0.3);
+      }
+      .cp-stat-label {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Accent}};
+      }
+
+      /* Commit type badges — HUD style */
+      .cp-type-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        border: 1px solid {{.Theme.Colors.Primary}};
+        color: {{.Theme.Colors.Primary}};
+        background: rgba(252, 238, 9, 0.08);
+        box-shadow: 0 0 6px rgba(252, 238, 9, 0.2), inset 0 0 6px rgba(252, 238, 9, 0.05);
+      }
+      .cp-type-badge.type-fix {
+        border-color: {{.Theme.Colors.Accent}};
+        color: {{.Theme.Colors.Accent}};
+        background: rgba(0, 217, 255, 0.08);
+        box-shadow: 0 0 6px rgba(0, 217, 255, 0.2), inset 0 0 6px rgba(0, 217, 255, 0.05);
+      }
+      .cp-type-badge.type-breaking {
+        border-color: {{.Theme.Colors.Secondary}};
+        color: {{.Theme.Colors.Secondary}};
+        background: rgba(255, 45, 107, 0.08);
+        box-shadow: 0 0 6px rgba(255, 45, 107, 0.3), inset 0 0 6px rgba(255, 45, 107, 0.05);
+      }
+      .cp-type-badge.type-refactor,
+      .cp-type-badge.type-docs,
+      .cp-type-badge.type-test,
+      .cp-type-badge.type-chore {
+        border-color: {{.Theme.Colors.Border}};
+        color: {{.Theme.Colors.Text}};
+        background: rgba(224, 224, 224, 0.05);
+        box-shadow: none;
+      }
+
+      /* Commits list */
+      .cp-commits { margin-bottom: 48px; }
+      .cp-item-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid {{.Theme.Colors.Border}};
+        font-size: 13px;
+      }
+      .cp-item-row:last-child { border-bottom: none; }
+      .cp-item-row.breaking-row {
+        border: 1px solid {{.Theme.Colors.Secondary}};
+        animation: pulse-border 2s infinite;
+        padding: 10px;
+        margin-bottom: 4px;
+      }
+      .cp-item-msg {
+        flex: 1;
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.5;
+      }
+      .cp-item-hash {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        color: {{.Theme.Colors.Accent}};
+        opacity: 0.6;
+        flex-shrink: 0;
+        align-self: center;
+      }
+      .cp-item-author {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.4;
+        flex-shrink: 0;
+        align-self: center;
+      }
+
+      /* Charts */
+      .cp-charts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+      .cp-chart-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        padding: 24px;
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      }
+      .cp-chart-title {
+        font-family: 'Orbitron', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Accent}};
+        margin-bottom: 20px;
+      }
+      .cp-chart-wrap {
+        position: relative;
+        height: 200px;
+      }
+
+      /* Footer */
+      .cp-footer {
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        padding-top: 24px;
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Accent}};
+        letter-spacing: 0.06em;
+      }
+      .cp-footer-logo {
+        display: flex;
+        align-items: center;
+        color: {{.Theme.Colors.Primary}};
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+      .cp-footer-logo svg { width: 24px; height: 24px; }
+    </style>
+  </head>
+  <body>
+
+    <header class="cp-header">
+      <div class="cp-header-inner">
+        <div class="cp-header-eyebrow">{{.RepoName}} // System Log</div>
+        <div class="cp-header-title glitch-text" data-text="COMPILE">COMPILE</div>
+        <div class="cp-header-meta">
+          {{if .Version}}<span class="cp-header-version">v{{.Version}}</span>{{end}}
+          {{if .Generated}}<span>{{.Generated}}</span>{{end}}
+        </div>
+      </div>
+    </header>
+
+    <main class="cp-page">
+
+      {{if .Content}}
+      <div class="cp-narrative">{{.Content}}</div>
+      {{end}}
+
+      {{if .Items}}
+
+      <div class="cp-stats">
+        <div class="cp-stat-card">
+          <div class="cp-stat-value">{{len .Items}}</div>
+          <div class="cp-stat-label">Operations</div>
+        </div>
+        <div class="cp-stat-card">
+          <div class="cp-stat-value" id="cp-feat-count">—</div>
+          <div class="cp-stat-label">Upgrades</div>
+        </div>
+        <div class="cp-stat-card">
+          <div class="cp-stat-value" id="cp-fix-count">—</div>
+          <div class="cp-stat-label">Patches</div>
+        </div>
+        <div class="cp-stat-card">
+          <div class="cp-stat-value" id="cp-break-count">—</div>
+          <div class="cp-stat-label">Alerts</div>
+        </div>
+      </div>
+
+      <div class="cp-section-label">All Operations</div>
+      <div class="cp-commits">
+        {{range .Items}}
+        <div class="cp-item-row{{if eq (lower .Type) "breaking"}} breaking-row{{end}}">
+          <span class="cp-type-badge type-{{lower .Type}}">{{.Icon}} {{.Type}}</span>
+          <span class="cp-item-msg">{{.Message}}</span>
+          <span class="cp-item-hash">{{.Hash}}</span>
+          <span class="cp-item-author">{{.Author}}</span>
+        </div>
+        {{end}}
+      </div>
+
+      <div class="cp-section-label">System Analysis</div>
+      <div class="cp-charts">
+        <div class="cp-chart-card">
+          <div class="cp-chart-title">Activity Scan</div>
+          <div class="cp-chart-wrap">
+            <canvas id="cpActivityChart"></canvas>
+          </div>
+        </div>
+        <div class="cp-chart-card">
+          <div class="cp-chart-title">Type Distribution</div>
+          <div class="cp-chart-wrap">
+            <canvas id="cpTypeChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var items = [
+          {{range .Items}}
+          { type: "{{lower .Type}}" },
+          {{end}}
+        ];
+        var counts = {};
+        items.forEach(function(i) {
+          counts[i.type] = (counts[i.type] || 0) + 1;
+        });
+        var featCount = counts["feat"] || counts["feature"] || 0;
+        var fixCount = counts["fix"] || 0;
+        var breakCount = counts["breaking"] || 0;
+        var el1 = document.getElementById("cp-feat-count");
+        var el2 = document.getElementById("cp-fix-count");
+        var el3 = document.getElementById("cp-break-count");
+        if (el1) el1.textContent = featCount;
+        if (el2) el2.textContent = fixCount;
+        if (el3) el3.textContent = breakCount;
+
+        /* Activity bar chart — group by date */
+        var dateMap = {};
+        [{{range .Items}}"{{.Date}}",{{end}}].forEach(function(d) {
+          var key = d.substring(0, 7) || d;
+          dateMap[key] = (dateMap[key] || 0) + 1;
+        });
+        var actLabels = Object.keys(dateMap).sort();
+        var actData = actLabels.map(function(k) { return dateMap[k]; });
+
+        var actCtx = document.getElementById("cpActivityChart");
+        if (actCtx && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(actCtx, {
+                type: "bar",
+                data: {
+                  labels: actLabels,
+                  datasets: [{
+                    label: "Operations",
+                    data: actData,
+                    /* Cyberpunk yellow — FCEE09 */
+                    backgroundColor: "#FCEE09",
+                    borderRadius: 2,
+                    borderSkipped: false
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      /* Border color — 1E1E2E */
+                      grid: { color: "#1E1E2E" },
+                      ticks: {
+                        color: "#E0E0E0",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 }
+                      }
+                    },
+                    y: {
+                      grid: { color: "#1E1E2E" },
+                      ticks: {
+                        color: "#E0E0E0",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 },
+                        precision: 0
+                      }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Chart error:", e); }
+          }, 100);
+        }
+
+        /* Donut chart — type distribution */
+        var typeLabels = Object.keys(counts);
+        var typeData = typeLabels.map(function(k) { return counts[k]; });
+        /* Palette: yellow, cyan, pink, surface-lighter, muted */
+        var palette = ["#FCEE09", "#00D9FF", "#FF2D6B", "#2A2A3A", "#4A4A5A", "#8B8B9B", "#FCEE09"];
+        while (palette.length < typeLabels.length) {
+          palette.push(palette[palette.length - 1]);
+        }
+        var typeCtx = document.getElementById("cpTypeChart");
+        if (typeCtx && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(typeCtx, {
+                type: "doughnut",
+                data: {
+                  labels: typeLabels,
+                  datasets: [{
+                    data: typeData,
+                    backgroundColor: palette.slice(0, typeLabels.length),
+                    borderWidth: 0
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: {
+                      position: "right",
+                      labels: {
+                        color: "#E0E0E0",
+                        font: { family: "'Share Tech Mono', monospace", size: 11 },
+                        padding: 12
+                      }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+
+      {{end}}
+
+      <footer class="cp-footer">
+        {{if .Theme.Logo}}
+        <div class="cp-footer-logo">{{safeHTML .Theme.Logo}}</div>
+        {{end}}
+        <span>// COMPILED BY COMMITLORE</span>
+      </footer>
+
+    </main>
+  </body>
+  </html>
+
+html_template_story: |
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Link — {{.RepoName}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: {{.Theme.Typography.FontSizeBase}}; }
+      body {
+        font-family: 'Share Tech Mono', {{safeCSS .Theme.Typography.FontFamily}};
+        background: {{.Theme.Colors.Background}};
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.6;
+        min-height: 100vh;
+        position: relative;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0,0,0,0.08) 2px,
+          rgba(0,0,0,0.08) 4px
+        );
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.4;
+      }
+      a { color: {{.Theme.Colors.Accent}}; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      /* Glitch animation */
+      @keyframes glitch {
+        0%, 90%, 100% { transform: translate(0); }
+        92% { transform: translate(-2px, 1px); }
+        94% { transform: translate(2px, -1px); }
+        96% { transform: translate(-1px, -1px); }
+        98% { transform: translate(1px, 1px); }
+      }
+      @keyframes glitchBefore {
+        0%, 90%, 100% { clip-path: inset(0 0 100% 0); opacity: 0; }
+        92% { clip-path: inset(20% 0 40% 0); opacity: 0.8; }
+        94% { clip-path: inset(60% 0 10% 0); opacity: 0.8; }
+      }
+      @keyframes glitchAfter {
+        0%, 90%, 100% { clip-path: inset(0 0 100% 0); opacity: 0; }
+        91% { clip-path: inset(50% 0 20% 0); opacity: 0.6; }
+        93% { clip-path: inset(10% 0 60% 0); opacity: 0.6; }
+      }
+      .glitch-text {
+        position: relative;
+        animation: glitch 4s infinite;
+      }
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .glitch-text::before {
+        color: {{.Theme.Colors.Accent}};
+        animation: glitchBefore 4s infinite;
+        transform: translate(-2px, 0);
+      }
+      .glitch-text::after {
+        color: {{.Theme.Colors.Secondary}};
+        animation: glitchAfter 4s infinite;
+        transform: translate(2px, 0);
+      }
+
+      /* Cut corners */
+      .cut-corners {
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      }
+
+      /* Header */
+      .nl-header {
+        min-height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        background: linear-gradient(180deg, {{.Theme.Colors.Surface}} 0%, {{.Theme.Colors.Background}} 100%);
+        border-bottom: 2px solid {{.Theme.Colors.Primary}};
+        position: relative;
+        overflow: hidden;
+        padding: 32px 24px;
+      }
+      .nl-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(252, 238, 9, 0.03) 60px,
+          rgba(252, 238, 9, 0.03) 61px
+        );
+        pointer-events: none;
+      }
+      .nl-header-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+      .nl-header-eyebrow {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: {{.Theme.Colors.Accent}};
+      }
+      .nl-header-title {
+        font-family: 'Orbitron', monospace;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: {{.Theme.Colors.Primary}};
+        line-height: 1;
+        text-shadow: 0 0 20px rgba(252, 238, 9, 0.4), 0 0 40px rgba(252, 238, 9, 0.1);
+      }
+      .nl-header-meta {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.6;
+        letter-spacing: 0.05em;
+      }
+
+      /* Layout */
+      .nl-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 32px 88px;
+      }
+
+      /* Section label */
+      .nl-section-label {
+        font-family: 'Orbitron', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: {{.Theme.Colors.Primary}};
+        margin-bottom: 18px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid {{.Theme.Colors.Primary}};
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nl-section-label::before {
+        content: "//";
+        color: {{.Theme.Colors.Accent}};
+        opacity: 0.6;
+      }
+
+      /* Stats */
+      .nl-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-bottom: 48px;
+      }
+      @media (max-width: 680px) {
+        .nl-stats { grid-template-columns: repeat(2, 1fr); }
+      }
+      .nl-stat-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        padding: 20px 16px;
+        text-align: center;
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      }
+      .nl-stat-value {
+        font-family: 'Orbitron', monospace;
+        font-size: 28px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        line-height: 1;
+        margin-bottom: 6px;
+        text-shadow: 0 0 12px rgba(252, 238, 9, 0.3);
+        word-break: break-word;
+      }
+      .nl-stat-label {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Accent}};
+      }
+
+      /* Narrative */
+      .nl-narrative {
+        max-width: 740px;
+        margin: 0 auto 52px;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .nl-narrative h1, .nl-narrative h2, .nl-narrative h3 {
+        font-family: 'Orbitron', monospace;
+        color: {{.Theme.Colors.Primary}};
+        font-weight: 700;
+        margin-bottom: 12px;
+        margin-top: 28px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .nl-narrative h1 { font-size: 22px; margin-top: 0; }
+      .nl-narrative h2 { font-size: 17px; }
+      .nl-narrative h3 { font-size: 14px; color: {{.Theme.Colors.Accent}}; }
+      .nl-narrative p { color: {{.Theme.Colors.Text}}; margin-bottom: 14px; }
+      .nl-narrative ul, .nl-narrative ol { padding-left: 20px; margin-bottom: 14px; }
+      .nl-narrative li { line-height: 1.8; margin-bottom: 4px; color: {{.Theme.Colors.Text}}; }
+      .nl-narrative strong { font-weight: 700; color: {{.Theme.Colors.Primary}}; }
+      .nl-narrative em { color: {{.Theme.Colors.Accent}}; }
+      .nl-narrative code {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 1px 5px;
+        font-size: {{.Theme.Typography.FontSizeCode}};
+        color: {{.Theme.Colors.Accent}};
+        font-family: 'Share Tech Mono', monospace;
+      }
+      .nl-narrative pre {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        border-radius: 2px;
+        padding: 16px;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+      .nl-narrative pre code { background: none; border: none; padding: 0; color: {{.Theme.Colors.Text}}; }
+      .nl-narrative hr {
+        border: none;
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        margin: 24px 0;
+      }
+      .nl-narrative blockquote {
+        border-left: 3px solid {{.Theme.Colors.Accent}};
+        padding-left: 16px;
+        color: {{.Theme.Colors.Accent}};
+        margin: 0 0 14px;
+      }
+
+      /* Activity chart */
+      .nl-chart-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        padding: 24px;
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+        margin-bottom: 48px;
+      }
+      .nl-chart-title {
+        font-family: 'Orbitron', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: {{.Theme.Colors.Accent}};
+        margin-bottom: 20px;
+      }
+      .nl-chart-wrap {
+        position: relative;
+        height: 220px;
+      }
+
+      /* Data stream timeline */
+      .nl-timeline {
+        position: relative;
+        margin-bottom: 52px;
+        padding-left: 40px;
+      }
+      .nl-timeline::before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, {{.Theme.Colors.Accent}}, {{.Theme.Colors.Primary}}, {{.Theme.Colors.Accent}});
+        opacity: 0.4;
+      }
+      .nl-timeline-node {
+        position: relative;
+        margin-bottom: 24px;
+      }
+      .nl-timeline-node::before {
+        content: "";
+        position: absolute;
+        left: -29px;
+        top: 8px;
+        width: 10px;
+        height: 10px;
+        background: {{.Theme.Colors.Accent}};
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        box-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+      }
+      .nl-timeline-month {
+        font-family: 'Orbitron', monospace;
+        font-size: 15px;
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .nl-timeline-count {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Accent}};
+        letter-spacing: 0.1em;
+      }
+      .nl-timeline-bar {
+        margin-top: 8px;
+        height: 4px;
+        background: {{.Theme.Colors.Border}};
+        overflow: hidden;
+      }
+      .nl-timeline-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, {{.Theme.Colors.Accent}}, {{.Theme.Colors.Primary}});
+        transition: width 0.8s ease;
+      }
+
+      /* Contributor HUD cards */
+      .nl-contributors {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 12px;
+        margin-bottom: 52px;
+      }
+      .nl-contributor-card {
+        background: {{.Theme.Colors.Surface}};
+        border: 1px solid {{.Theme.Colors.Border}};
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .nl-avatar {
+        width: 42px;
+        height: 42px;
+        background: {{.Theme.Colors.Accent}};
+        color: {{.Theme.Colors.Background}};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Orbitron', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      }
+      .nl-contributor-info {}
+      .nl-contributor-name {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 13px;
+        font-weight: 600;
+        color: {{.Theme.Colors.Text}};
+        line-height: 1.2;
+      }
+      .nl-contributor-count {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 11px;
+        color: {{.Theme.Colors.Accent}};
+        font-weight: 600;
+        margin-top: 2px;
+      }
+      .nl-contributor-joined {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 10px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.4;
+        margin-top: 2px;
+      }
+
+      /* Tags / System events */
+      .nl-tags {
+        margin-bottom: 52px;
+      }
+      .nl-tag-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid {{.Theme.Colors.Border}};
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 13px;
+      }
+      .nl-tag-row:last-child { border-bottom: none; }
+      .nl-tag-date {
+        font-size: 11px;
+        color: {{.Theme.Colors.Accent}};
+        opacity: 0.6;
+        min-width: 90px;
+        flex-shrink: 0;
+      }
+      .nl-tag-name {
+        font-weight: 700;
+        color: {{.Theme.Colors.Primary}};
+        letter-spacing: 0.04em;
+      }
+      .nl-tag-hash {
+        font-size: 11px;
+        color: {{.Theme.Colors.Text}};
+        opacity: 0.4;
+        margin-left: auto;
+      }
+
+      /* Footer */
+      .nl-footer {
+        border-top: 1px solid {{.Theme.Colors.Border}};
+        padding-top: 24px;
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 12px;
+        color: {{.Theme.Colors.Accent}};
+        letter-spacing: 0.06em;
+      }
+      .nl-footer-logo {
+        display: flex;
+        align-items: center;
+        color: {{.Theme.Colors.Primary}};
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+      .nl-footer-logo svg { width: 24px; height: 24px; }
+    </style>
+  </head>
+  <body>
+
+    <header class="nl-header">
+      <div class="nl-header-inner">
+        <div class="nl-header-eyebrow">{{.RepoName}}</div>
+        <div class="nl-header-title glitch-text" data-text="NEURAL LINK">NEURAL LINK</div>
+        {{if or .FirstDate .Generated}}
+        <div class="nl-header-meta">
+          {{if .FirstDate}}<span>{{.FirstDate}}</span>{{end}}
+          {{if and .FirstDate .Generated}}<span>→</span>{{end}}
+          {{if .Generated}}<span>{{.Generated}}</span>{{end}}
+        </div>
+        {{end}}
+      </div>
+    </header>
+
+    <main class="nl-page">
+
+      <div class="nl-section-label">System Stats</div>
+      <div class="nl-stats">
+        <div class="nl-stat-card">
+          <div class="nl-stat-value">{{.TotalCommits}}</div>
+          <div class="nl-stat-label">Operations</div>
+        </div>
+        <div class="nl-stat-card">
+          <div class="nl-stat-value">{{len .Contributors}}</div>
+          <div class="nl-stat-label">Netrunners</div>
+        </div>
+        <div class="nl-stat-card">
+          <div class="nl-stat-value" style="font-size:16px;padding-top:6px">{{.FirstDate}}</div>
+          <div class="nl-stat-label">First Op</div>
+        </div>
+        <div class="nl-stat-card" id="nl-peak-stat">
+          {{if .Peaks}}
+          <div class="nl-stat-value" style="font-size:16px;padding-top:6px" id="nl-peak-month">—</div>
+          {{else}}
+          <div class="nl-stat-value">—</div>
+          {{end}}
+          <div class="nl-stat-label">Peak Load</div>
+        </div>
+      </div>
+
+      {{if .Content}}
+      <div class="nl-narrative">{{.Content}}</div>
+      {{end}}
+
+      {{if .Peaks}}
+      <div class="nl-section-label">Network Scan</div>
+      <div class="nl-chart-card">
+        <div class="nl-chart-title">Activity Signal</div>
+        <div class="nl-chart-wrap">
+          <canvas id="nlActivityChart"></canvas>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        function hexToRgba(hex, alpha) {
+          hex = hex.replace('#', '');
+          if (hex.length === 3) hex = hex.split('').map(function(c){return c+c;}).join('');
+          var r = parseInt(hex.substring(0,2),16);
+          var g = parseInt(hex.substring(2,4),16);
+          var b = parseInt(hex.substring(4,6),16);
+          return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+        }
+        var labels = [{{range .Peaks}}"{{.Month}}",{{end}}];
+        var data   = [{{range .Peaks}}{{.Count}},{{end}}];
+        var maxVal = Math.max.apply(null, data) || 1;
+
+        var peakIdx = data.indexOf(maxVal);
+        var peakEl = document.getElementById("nl-peak-month");
+        if (peakEl && labels[peakIdx]) {
+          peakEl.textContent = labels[peakIdx];
+        }
+
+        var fills = document.querySelectorAll(".nl-timeline-bar-fill");
+        fills.forEach(function(el) {
+          var pct = el.getAttribute("data-pct") || "0";
+          el.style.width = pct + "%";
+        });
+
+        var ctx = document.getElementById("nlActivityChart");
+        if (ctx && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(ctx, {
+                type: "line",
+                data: {
+                  labels: labels,
+                  datasets: [{
+                    label: "Operations",
+                    data: data,
+                    /* Cyan neon line — 00D9FF */
+                    borderColor: "#00D9FF",
+                    backgroundColor: hexToRgba("#FCEE09", 0.08),
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: "#00D9FF",
+                    pointBorderColor: "#00D9FF",
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                  }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      grid: { color: "#1E1E2E" },
+                      ticks: {
+                        color: "#E0E0E0",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 }
+                      }
+                    },
+                    y: {
+                      grid: { color: "#1E1E2E" },
+                      ticks: {
+                        color: "#E0E0E0",
+                        font: { family: "'Share Tech Mono', monospace", size: 10 },
+                        precision: 0
+                      }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+
+      <div class="nl-section-label">Overclock Events</div>
+      <div class="nl-timeline">
+        {{$peaks := .Peaks}}
+        {{$maxCount := 1}}
+        {{range $peaks}}{{if gt .Count $maxCount}}{{$maxCount = .Count}}{{end}}{{end}}
+        {{range $peaks}}
+        {{$pct := 0.0}}
+        {{if gt $maxCount 0}}{{$pct = mul (divf .Count $maxCount) 100.0}}{{end}}
+        <div class="nl-timeline-node">
+          <div class="nl-timeline-month">{{.Month}}</div>
+          <div class="nl-timeline-count">{{.Count}} operations</div>
+          <div class="nl-timeline-bar">
+            <div class="nl-timeline-bar-fill" data-pct="{{$pct}}"></div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+      {{end}}
+
+      {{if .Tags}}
+      <div class="nl-section-label">System Events</div>
+      <div class="nl-tags">
+        {{range .Tags}}
+        <div class="nl-tag-row">
+          <span class="nl-tag-date">{{.Date}}</span>
+          <span class="nl-tag-name">{{.Name}}</span>
+          <span class="nl-tag-hash">{{.Hash}}</span>
+        </div>
+        {{end}}
+      </div>
+      {{end}}
+
+      {{if .Contributors}}
+      <div class="nl-section-label">Netrunners</div>
+      <div class="nl-contributors">
+        {{range .Contributors}}
+        <div class="nl-contributor-card">
+          <div class="nl-avatar">{{initials .Name}}</div>
+          <div class="nl-contributor-info">
+            <div class="nl-contributor-name">{{.Name}}</div>
+            <div class="nl-contributor-count">{{.Count}} ops</div>
+            {{if .Date}}<div class="nl-contributor-joined">Since {{.Date}}</div>{{end}}
+          </div>
+        </div>
+        {{end}}
+      </div>
+
+      <div class="nl-section-label">Netrunner Ranking</div>
+      <div class="nl-chart-card">
+        <div style="position: relative; height: 220px;">
+          <canvas id="nlContribChart"></canvas>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var contribNames  = [{{range .Contributors}}"{{.Name}}",{{end}}];
+        var contribCounts = [{{range .Contributors}}{{.Count}},{{end}}];
+        var ctx = document.getElementById("nlContribChart");
+        if (ctx && contribNames.length > 0 && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: contribNames,
+                  datasets: [{
+                    label: "Operations",
+                    data: contribCounts,
+                    /* Accent cyan — 00D9FF */
+                    backgroundColor: "#00D9FF",
+                    borderRadius: 2,
+                    borderSkipped: false
+                  }]
+                },
+                options: {
+                  indexAxis: "y",
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                      grid: { color: "#1E1E2E" },
+                      ticks: { color: "#E0E0E0", font: { family: "'Share Tech Mono', monospace", size: 10 } }
+                    },
+                    y: {
+                      grid: { display: false },
+                      ticks: { color: "#E0E0E0", font: { family: "'Share Tech Mono', monospace", size: 11 } }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Contrib chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+      {{end}}
+
+      <footer class="nl-footer">
+        {{if .Theme.Logo}}
+        <div class="nl-footer-logo">{{safeHTML .Theme.Logo}}</div>
+        {{end}}
+        <span>// END NEURAL LINK TRANSMISSION</span>
+      </footer>
+
+    </main>
+  </body>
+  </html>

@@ -1,0 +1,11 @@
+[
+  {
+    "name": "cyberpunk",
+    "description": "Night City never sleeps. Neither does your changelog.",
+    "author": "commitlore",
+    "version": "1.0.0",
+    "tags": ["dark", "neon", "cyberpunk", "gaming", "futuristic"],
+    "preview": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/preview.svg",
+    "download": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/cyberpunk.shipstyle"
+  }
+]
