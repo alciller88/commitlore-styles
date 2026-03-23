@@ -22,10 +22,10 @@ theme:
     font_size_header: "22px"
     font_size_code: "13px"
   logo: |
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M2 17L12 3L22 17H2Z" fill="#FCEE09" opacity="0.9"/>
-      <path d="M4 17L12 5L20 17H4Z" fill="none" stroke="#00D9FF" stroke-width="0.5" opacity="0.6" transform="translate(0.5, -0.5)"/>
-      <text x="12" y="15" text-anchor="middle" font-family="monospace" font-size="5" font-weight="bold" fill="#0A0A0F">CL</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+      <path d="M20 95 L20 25 L55 25 L55 35 L33 35 L33 55 L50 55 L50 65 L33 65 L33 85 L55 85 L55 95 Z" fill="#FCEE09" stroke="#FCEE09" stroke-width="3" stroke-linejoin="bevel"/>
+      <path d="M65 25 L65 85 L100 85 L100 95 L52 95 L52 25 Z" fill="#FCEE09" stroke="#FCEE09" stroke-width="3" stroke-linejoin="bevel"/>
+      <line x1="10" y1="60" x2="110" y2="60" stroke="#00D9FF" stroke-width="3" opacity="0.2"/>
     </svg>
   header_image: ""
   card_style: "bordered"
@@ -504,8 +504,8 @@ html_template_changelog: |
 
       /* Charts */
       .cp-charts {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 24px;
         margin-bottom: 48px;
       }
@@ -526,7 +526,7 @@ html_template_changelog: |
       }
       .cp-chart-wrap {
         position: relative;
-        height: 200px;
+        height: 320px;
       }
 
       /* Footer */
