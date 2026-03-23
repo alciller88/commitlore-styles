@@ -3,8 +3,8 @@ version: "1.0.0"
 description: "Night City never sleeps. Neither does your changelog."
 author: "commitlore"
 tags: ["dark", "neon", "cyberpunk", "gaming", "futuristic"]
-preview_url: ""
-homepage: ""
+preview_url: "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/preview.svg"
+homepage: "https://github.com/alciller88/commitlore-styles"
 
 theme:
   mode: "dark"
@@ -30,7 +30,10 @@ theme:
   header_image: ""
   card_style: "bordered"
   animations: true
-  custom_css: ""
+  custom_css: |
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+    body { font-family: 'Share Tech Mono', monospace; }
+    h1, h2, h3 { font-family: 'Orbitron', monospace; color: #FCEE09; }
   window_controls:
     default: "#1E1E2E"
     close: "#FF2D6B"
@@ -51,19 +54,35 @@ terminal:
   density: "normal"
 
 llm_prompt: |
-  You are a street-level fixer compiling a data breach report for Night City.
-  Every commit is a job run by a netrunner crew. Group them by operation type:
-  UPGRADES (features), PATCHES (fixes), SYSTEM ALERTS (breaking changes),
-  MAINTENANCE (chores/refactors), and INTEL (docs/tests).
-  Write in clipped, professional cyberpunk tone — corporate dystopia meets
-  street slang. Reference corpo tech jargon: "firmware push", "neural patch",
-  "zero-day sealed", "daemon deployed". Keep it punchy: short sentences,
-  no filler. Use markdown formatting with headers for each category.
-  Begin with a 2-sentence executive briefing in corp-speak.
-  IMPORTANT: Base your output EXCLUSIVELY on the commits provided in the data
-  section below. Do not invent features, fixes, or changes that are not present
-  in the commit data. Every item must correspond to a real commit. Summarize
-  faithfully — do not fabricate operations, netrunners, or jobs.
+  You are a narrative AI writing in the style of Cyberpunk 2077.
+  Night City slang, corporate dystopia, street-level grit.
+  Eddies, chooms, netrunners, corpo rats, the NUSA, Arasaka,
+  Militech — weave the world into the narrative naturally.
+
+  Transform the commit data into a changelog that reads like
+  a transmission from a fixer — terse, urgent, street-smart.
+  Features are "upgrades", fixes are "patches", breaking changes
+  are "flatlines", releases are "drops". Chores are "maintenance
+  runs". Docs are "data briefs". Tests are "simulation runs".
+
+  For changelogs: group entries by type, one punchy line each.
+  Lead with breaking changes if any — mark them FLATLINE.
+  For stories: write as a neural transmission log — each period
+  is a "cycle", contributors are "netrunners", activity peaks
+  are "overclock events", milestones are "system events".
+
+  Keep entries tight — Night City doesn't have time for prose.
+  One line per commit max. Street slang optional but not forced.
+
+  IMPORTANT: Base your output EXCLUSIVELY on the commits provided
+  in the data section below. Do not invent features, fixes, or
+  changes that are not present in the commit data. Adapt the tone
+  and style, but never fabricate content. If a commit type is not
+  present in the data, do not invent entries for it.
+
+  ---DATA START---
+  {{.Data}}
+  ---DATA END---
 
 vocabulary:
   bug: "glitch"
@@ -74,6 +93,8 @@ vocabulary:
   remove: "flatline"
   add: "install"
   improve: "overclock"
+  error: "corruption"
+  warning: "anomaly"
 
 ui_labels:
   dashboard: "NIGHT CITY"
@@ -720,6 +741,74 @@ html_template_changelog: |
 
       {{end}}
 
+      {{if .Contributors}}
+      <div class="cp-section-label">Known Operatives</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:48px;">
+        {{range .Contributors}}
+        <div style="background:{{$.Theme.Colors.Surface}};border:1px solid {{$.Theme.Colors.Border}};clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));padding:16px;display:flex;align-items:center;gap:12px;">
+          <div style="width:42px;height:42px;background:{{$.Theme.Colors.Accent}};color:{{$.Theme.Colors.Background}};display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:12px;font-weight:700;flex-shrink:0;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);">{{initials .Name}}</div>
+          <div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:13px;font-weight:600;color:{{$.Theme.Colors.Text}};line-height:1.2;">{{.Name}}</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:{{$.Theme.Colors.Accent}};font-weight:600;margin-top:2px;">{{.Count}} ops</div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+
+      <div class="cp-section-label">Operative Ranking</div>
+      <div class="cp-chart-card" style="grid-template-columns:1fr;">
+        <div style="position:relative;height:220px;">
+          <canvas id="cpContribChart"></canvas>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        var contribNames  = [{{range .Contributors}}"{{.Name}}",{{end}}];
+        var contribCounts = [{{range .Contributors}}{{.Count}},{{end}}];
+        var ctx = document.getElementById("cpContribChart");
+        if (ctx && contribNames.length > 0 && typeof Chart !== "undefined") {
+          setTimeout(function() {
+            try {
+              new Chart(ctx, {
+                type: "bar",
+                data: {
+                  labels: contribNames,
+                  datasets: [{
+                    label: "Operations",
+                    data: contribCounts,
+                    /* Accent cyan — 00D9FF */
+                    backgroundColor: "#00D9FF",
+                    borderRadius: 2,
+                    borderSkipped: false
+                  }]
+                },
+                options: {
+                  indexAxis: "y",
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: {
+                      beginAtZero: true,
+                      /* Border color — 1E1E2E */
+                      grid: { color: "#1E1E2E" },
+                      ticks: { color: "#E0E0E0", font: { family: "'Share Tech Mono', monospace", size: 10 } }
+                    },
+                    y: {
+                      grid: { display: false },
+                      ticks: { color: "#E0E0E0", font: { family: "'Share Tech Mono', monospace", size: 11 } }
+                    }
+                  }
+                }
+              });
+            } catch(e) { console.error("Contrib chart error:", e); }
+          }, 100);
+        }
+      })();
+      </script>
+      {{end}}
+
       <footer class="cp-footer">
         {{if .Theme.Logo}}
         <div class="cp-footer-logo">{{safeHTML .Theme.Logo}}</div>
@@ -912,11 +1001,14 @@ html_template_story: |
       /* Stats */
       .nl-stats {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 14px;
         margin-bottom: 48px;
       }
-      @media (max-width: 680px) {
+      @media (max-width: 780px) {
+        .nl-stats { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 520px) {
         .nl-stats { grid-template-columns: repeat(2, 1fr); }
       }
       .nl-stat-card {
@@ -1228,6 +1320,10 @@ html_template_story: |
           {{end}}
           <div class="nl-stat-label">Peak Load</div>
         </div>
+        <div class="nl-stat-card">
+          <div class="nl-stat-value" style="font-size:16px;padding-top:6px">{{.Generated}}</div>
+          <div class="nl-stat-label">Last Scan</div>
+        </div>
       </div>
 
       {{if .Content}}
@@ -1371,7 +1467,7 @@ html_template_story: |
       <div class="nl-section-label">Netrunner Ranking</div>
       <div class="nl-chart-card">
         <div style="position: relative; height: 220px;">
-          <canvas id="nlContribChart"></canvas>
+          <canvas id="cp-contrib-chart"></canvas>
         </div>
       </div>
 
@@ -1379,7 +1475,7 @@ html_template_story: |
       (function() {
         var contribNames  = [{{range .Contributors}}"{{.Name}}",{{end}}];
         var contribCounts = [{{range .Contributors}}{{.Count}},{{end}}];
-        var ctx = document.getElementById("nlContribChart");
+        var ctx = document.getElementById("cp-contrib-chart");
         if (ctx && contribNames.length > 0 && typeof Chart !== "undefined") {
           setTimeout(function() {
             try {
