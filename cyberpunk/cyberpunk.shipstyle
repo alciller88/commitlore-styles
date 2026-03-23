@@ -698,8 +698,10 @@ html_template_changelog: |
         }
 
         /* Donut chart — type distribution */
-        var typeLabels = Object.keys(counts);
-        var typeData = typeLabels.map(function(k) { return counts[k]; });
+        var vocabMap = { {{range $k, $v := .Vocabulary}}"{{$k}}": "{{$v}}", {{end}} };
+        var rawTypeLabels = Object.keys(counts);
+        var typeLabels = rawTypeLabels.map(function(k) { return vocabMap[k] || k; });
+        var typeData = rawTypeLabels.map(function(k) { return counts[k]; });
         /* Palette: yellow, cyan, pink, surface-lighter, muted */
         var palette = ["#FCEE09", "#00D9FF", "#FF2D6B", "#2A2A3A", "#4A4A5A", "#8B8B9B", "#FCEE09"];
         while (palette.length < typeLabels.length) {

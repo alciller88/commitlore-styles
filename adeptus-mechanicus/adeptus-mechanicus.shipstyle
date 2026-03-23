@@ -736,8 +736,10 @@ html_template_changelog: |
         }
 
         /* Donut chart — rite classification */
-        var typeLabels = Object.keys(counts);
-        var typeData = typeLabels.map(function(k) { return counts[k]; });
+        var vocabMap = { {{range $k, $v := .Vocabulary}}"{{$k}}": "{{$v}}", {{end}} };
+        var rawTypeLabels = Object.keys(counts);
+        var typeLabels = rawTypeLabels.map(function(k) { return vocabMap[k] || k; });
+        var typeData = rawTypeLabels.map(function(k) { return counts[k]; });
         /* Palette: red, gold, dark red, brown border, muted, lighter, warm */
         var palette = ["#C41E2A", "#B8860B", "#8B0000", "#2A1A0F", "#6B4423", "#A0522D", "#CD853F"];
         while (palette.length < typeLabels.length) {
