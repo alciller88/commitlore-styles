@@ -7,5 +7,14 @@
     "tags": ["dark", "neon", "cyberpunk", "gaming", "futuristic"],
     "preview": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/preview.svg",
     "download": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/cyberpunk/cyberpunk.shipstyle"
+  },
+  {
+    "name": "adeptus-mechanicus",
+    "description": "In the name of the Omnissiah. All knowledge is sacred.",
+    "author": "commitlore",
+    "version": "1.0.0",
+    "tags": ["dark", "warhammer", "40k", "grimdark", "sacerdotal", "binary"],
+    "preview": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/adeptus-mechanicus/preview.svg",
+    "download": "https://raw.githubusercontent.com/alciller88/commitlore-styles/main/adeptus-mechanicus/adeptus-mechanicus.shipstyle"
   }
 ]
