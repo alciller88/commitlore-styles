@@ -101,7 +101,7 @@ vocabulary:
   warning: "anomalía"
 
 ui_labels:
-  dashboard: "CIUDAD NOCTURNA"
+  dashboard: "NIGHT CITY"
   generate: "COMPILAR"
   generate_button: "EJECUTAR COMPILACIÓN"
   story: "ENLACE NEURAL"
