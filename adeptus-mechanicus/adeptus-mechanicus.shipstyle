@@ -14,7 +14,7 @@ theme:
     background: "#0A0805"
     surface: "#110D0A"
     text: "#C8B89A"
-    accent: "#8B0000"
+    accent: "#B8860B"
     border: "#2A1A0F"
   typography:
     font_family: "'Cinzel', 'Share Tech Mono', serif"
